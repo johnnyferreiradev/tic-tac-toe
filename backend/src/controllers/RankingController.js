@@ -11,7 +11,7 @@ module.exports = {
     async show(req, res) {
         try {
             const gamer =  await Ranking.find({ name: req.params.name });
-            return res.json({ name: gamer[0].name, score: gamer[0].score });
+            return res.json({ id: gamer[0]._id, name: gamer[0].name, score: gamer[0].score });
         } catch (e) {
             return res.status(500).send(`Usuário não foi encontrado - Error: ${e}`);
         }
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     async update(req, res) {
-        // Code ...
+        const gamer = await Ranking.update({})
     },
 
     async destroy(req, res) {
