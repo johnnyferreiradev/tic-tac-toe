@@ -13,9 +13,12 @@ module.exports = {
     },
 
     async store(req, res) {
-        const newPlayer = await Ranking.create(req.body);
-
-        return res.json(newPlayer);
+        try {
+            const newPlayer = await Ranking.create(req.body);
+            return res.json(newPlayer);
+        } catch (e) {
+            return res.status(500).send(`Error: ${e}`);
+        }
     },
 
     async update(req, res) {
