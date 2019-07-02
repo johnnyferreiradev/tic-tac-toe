@@ -27,10 +27,11 @@ module.exports = {
     },
 
     async update(req, res) {
-        const gamer = await Ranking.update({})
-    },
-
-    async destroy(req, res) {
-        // Code ...
+        try {
+            const gamer = await Ranking.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            return res.json({ id: gamer._id, name: gamer.name, score: gamer.score });
+        } catch (e) {
+            return res.status(500).send(`Error: ${e}`);
+        }
     }
 }
