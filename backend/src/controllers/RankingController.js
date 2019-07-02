@@ -33,5 +33,9 @@ module.exports = {
         } catch (e) {
             return res.status(500).send(`Error: ${e}`);
         }
+    },
+
+    async calculateScore (req, res) {
+        // Implementação ...
     }
 }
