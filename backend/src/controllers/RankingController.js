@@ -9,7 +9,12 @@ module.exports = {
     },
 
     async show(req, res) {
-        // Code ...
+        try {
+            const gamer =  await Ranking.find({ name: req.params.name });
+            return res.json({ name: gamer[0].name, score: gamer[0].score });
+        } catch (e) {
+            return res.status(500).send(`Usuário não foi encontrado - Error: ${e}`);
+        }
     },
 
     async store(req, res) {
