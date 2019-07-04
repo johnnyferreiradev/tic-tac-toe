@@ -12,5 +12,7 @@ routes.post('/ranking', RankingController.store);
 routes.get('/ranking/:name', RankingController.show);
 routes.put('/ranking/:id', RankingController.update);
 
+routes.post('/calculate', RankingController.calculateScore);
+
 
 module.exports = routes;
