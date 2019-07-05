@@ -1,0 +1,25 @@
+header.header {
+    background-color: rgb(169, 113, 233);
+    padding: 20px;
+    box-shadow: 2px 5px 5px #3332;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header.header .header-logo {
+    width: 80px;
+    height: 60px;
+}
+
+header.header .header-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+header.header .header-login {
+    font-size: 24px;
+    color: #fafafa;
+    cursor: pointer;
+}
