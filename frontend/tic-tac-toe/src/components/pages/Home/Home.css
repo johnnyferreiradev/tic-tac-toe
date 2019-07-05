@@ -1,0 +1,37 @@
+section.home {
+    height: calc(100% - 80px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.home .button-mode {
+    font-size: 40px;
+    background: rgb(169, 113, 233);
+    border-radius: 20px;
+    padding: 20px 40px;
+    color: #fff;
+    box-shadow: 10px 8px 8px #0002;
+    margin: 20px 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s;
+    width: 320px;
+}
+
+section.home .button-mode:hover {
+    background: rgb(133, 54, 223);
+    font-size: 50px;
+    width: 380px;
+}
+
+section.home .button-mode:active {
+    box-shadow: none;
+    width: 340px;
+    font-size: 42px;
+    transition: all .05s;
+}
+
