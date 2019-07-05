@@ -1,0 +1,91 @@
+
+section.login {
+    display: flex;
+    height: calc(100% - 80px);
+    justify-content: center;
+    align-items: center;
+}
+
+section.login .login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 1px 5px 10px #5552;
+    max-width: 700px;
+    width: 500px;
+    font-size: 24px;
+    text-align: center;
+    color: #555;
+}
+
+section.login .login-box .title-form {
+    padding-bottom: 40px;
+}
+
+section.login .login-box .form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+section.login .login-box .form-login p {
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+section.login .login-box .form-login input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0px;
+    border: 3px solid #888;
+    border-radius: 10px;
+    outline: none;
+    transition: .2s;
+    height: 40px;
+    font-size: 18px;
+    color: #222;
+}
+
+section.login .login-box .form-login input:hover {
+    border: 3px solid rgb(169, 113, 233);
+    transition: .2s;
+}
+
+section.login .login-box .form-login input:focus {
+    border: 3px solid rgb(169, 113, 233);
+}
+
+section.login .login-box .form-login button {
+    width: 25%;
+    padding: 8px 15px;
+    font-size: 18px;
+    border: none;
+    color: #555;
+    background: #eee;
+    box-shadow: 1px 3px 5px #5555;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all .2s;
+    height: 40px;
+}
+
+section.login .login-box .form-login button:hover {
+    background: rgb(169, 113, 233);
+    color: #fff;
+    transition: all .2s;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+section.login .login-box .form-login .link-register {
+    font-size: 18px;
+    color: rgb(169, 113, 233);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+section.login .login-box .form-login .link-register:hover {
+    color: rgb(118, 29, 219);
+    transition: all .2s;
+}

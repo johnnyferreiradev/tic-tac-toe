@@ -1,12 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Login from '../components/pages/Login/Login';
-import Home from '../components/pages/Home/Home';
-import Game from '../components/pages/Game/Game';
+import Login from '../pages/Login/Login';
+import Home from '../pages/Home/Home';
+import Game from '../pages/Game/Game';
+import Header from '../templates/Header/Header';
 
 const Routes = () => (
     <BrowserRouter>
+        <Header />
         <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
