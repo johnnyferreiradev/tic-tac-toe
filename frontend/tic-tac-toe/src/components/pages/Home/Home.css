@@ -19,17 +19,20 @@ section.home .button-mode {
     cursor: pointer;
     text-decoration: none;
     transition: all .2s;
+    max-width: 320px;
     width: 320px;
 }
 
 section.home .button-mode:hover {
     background: rgb(133, 54, 223);
     font-size: 50px;
+    max-width: 380px;
     width: 380px;
 }
 
 section.home .button-mode:active {
     box-shadow: none;
+    max-width: 340px;
     width: 340px;
     font-size: 42px;
     transition: all .05s;
