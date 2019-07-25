@@ -1,0 +1,26 @@
+.center-field { grid-area: center; }
+.north-field { grid-area: north; }
+.south-field { grid-area: south; }
+.east-field { grid-area: east; }
+.west-field { grid-area: west; }
+.northeast-field { grid-area: northeast; }
+.southeast-field { grid-area: southeast; }
+.southwest-field { grid-area: southwest; }
+.northwest-field { grid-area: northwest; }
+
+div.board {
+    background-color: #fff;
+    max-width: 700px;
+    width: 500px;
+    height: 400px;
+    box-shadow: 2px 5px 5px #0002;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-areas:    'northwest north northeast'
+                            'west center east'
+                            'southwest south southeast';
+}
