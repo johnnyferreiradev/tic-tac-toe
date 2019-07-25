@@ -4,6 +4,8 @@ section.login {
     height: calc(100% - 80px);
     justify-content: center;
     align-items: center;
+    border: 1px solid rgb(169, 113, 233);
+    border-radius: 10px;
 }
 
 section.login .login-box {
@@ -57,7 +59,7 @@ section.login .login-box .form-login input:focus {
 }
 
 section.login .login-box .form-login button {
-    width: 25%;
+    display: inline-block;
     padding: 8px 15px;
     font-size: 18px;
     border: none;
@@ -74,7 +76,6 @@ section.login .login-box .form-login button:hover {
     background: rgb(169, 113, 233);
     color: #fff;
     transition: all .2s;
-    font-size: 22px;
     cursor: pointer;
 }
 

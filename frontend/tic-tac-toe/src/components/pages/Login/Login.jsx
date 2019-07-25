@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import  './Login.css';
 
 const Login = () => (
@@ -15,7 +15,9 @@ const Login = () => (
                 <button>Entrar</button>
 
                 <p>
-                    Não possui uma conta? <a href className="link-register">Cadastrar-se</a>
+                    Não possui uma conta?      <Link to="/register" className="button-mode">
+                        <button>Registrar</button>
+                    </Link>
                 </p>
             </form>
         </div>

@@ -7,6 +7,7 @@ import Game from '../pages/Game/Game';
 import Header from '../templates/Header/Header';
 import Singleplayer from '../pages/Singleplayer/Singleplayer';
 import Multiplayer from '../pages/Multiplayer/Multiplayer';
+import Register from '../pages/Register/Register';
 
 const Routes = () => (
     <BrowserRouter>
@@ -17,6 +18,7 @@ const Routes = () => (
             <Route path="/game" component={Game} />
             <Route path="/singleplayer" component={Singleplayer} />
             <Route path="/multiplayer" component={Multiplayer} />
+            <Route path="/register" component={Register} />
         </Switch>
     </BrowserRouter>
 )

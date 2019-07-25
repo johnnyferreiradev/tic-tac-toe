@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../../../assets/imgs/header-logo.jpeg';
+import Login from '../../pages/Login/Login';
 
 import './Header.css';
 
@@ -10,7 +10,10 @@ const Header = () => (
             <img src={logo} alt="Logo do cabeçalho"/>
         </div>
         <nav className="header-login">
-            <Link to="/login">Login</Link>
+            login
+            <div className="login-drop-down">
+                <Login></Login>
+            </div>
         </nav>
     </header>
 );
