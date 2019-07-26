@@ -16,6 +16,7 @@ div.board {
     box-shadow: 2px 5px 5px #0002;
     border-radius: 10px;
     padding: 20px;
+    box-sizing: border-box;
 
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -24,3 +25,9 @@ div.board {
                             'west center east'
                             'southwest south southeast';
 }
+
+/* Desenho do tabuleiro do jogo */
+.right-limit { border-right: 4px solid #555; }
+.left-limit { border-left: 4px solid #555; }
+.top-limit { border-top: 4px solid #555; }
+.bottom-limit { border-bottom: 4px solid #555; }

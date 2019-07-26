@@ -10,7 +10,7 @@ export default class Field extends Component {
 
     render() {
         return (
-            <div className="field">
+            <div className={this.props.className}>
                 X
             </div>
         )
