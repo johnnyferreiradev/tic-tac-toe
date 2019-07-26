@@ -4,4 +4,17 @@
     font-size: 48px;
     background-color: #fafafa;
     width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.field .play-value {
+    font-family: 'Carter One', cursive;
+    color: #333;
+}
+
+.field .play-value:hover {
+    cursor: pointer;
 }

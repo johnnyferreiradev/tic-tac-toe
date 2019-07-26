@@ -27,7 +27,8 @@ div.board {
 }
 
 /* Desenho do tabuleiro do jogo */
-.right-limit { border-right: 8px solid rgb(169, 113, 233); }
-.left-limit { border-left: 8px solid rgb(169, 113, 233); }
-.top-limit { border-top: 8px solid rgb(169, 113, 233); }
-.bottom-limit { border-bottom: 8px solid rgb(169, 113, 233); }
+/* .all-limit { border: 4px solid white; } */
+.right-limit { border-right: 4px solid rgb(169, 113, 233); }
+.left-limit { border-left: 4px solid rgb(169, 113, 233); }
+.top-limit { border-top: 4px solid rgb(169, 113, 233); }
+.bottom-limit { border-bottom: 4px solid rgb(169, 113, 233); }

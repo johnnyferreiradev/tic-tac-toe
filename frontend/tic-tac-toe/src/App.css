@@ -1,4 +1,9 @@
 @font-face {
+    font-family: FredokaOne-Regular;
+    src: url('./assets/fonts/FredokaOne-Regular.ttf');
+}
+
+@font-face {
     font-family: FjallaOne-Regular;
     src: url('./assets/fonts/FjallaOne-Regular.ttf');
 }
