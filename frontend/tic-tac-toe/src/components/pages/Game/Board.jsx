@@ -19,8 +19,33 @@ export default class Board extends Component {
         this.toggleValue = this.toggleValue.bind(this)
     }
 
+    // isEmpty() { // Apenas backup. Não foi utilizada.
+    //     const squares = this.state.squares;
+    //     return squares.every(square => {
+    //         return square === '';
+    //     })
+    // }
+
+    checkVictory() {
+        const squares = this.state.squares
+
+        if ((squares[0] === squares[1] && squares[1] === squares[2] && squares[1] !== '') ||
+            (squares[3] === squares[4] && squares[4] === squares[5] && squares[4] !== '') ||
+            (squares[6] === squares[7] && squares[7] === squares[8] && squares[7] !== '') ||
+            (squares[0] === squares[3] && squares[3] === squares[6] && squares[3] !== '') ||
+            (squares[1] === squares[4] && squares[4] === squares[7] && squares[4] !== '') ||
+            (squares[2] === squares[5] && squares[5] === squares[8] && squares[5] !== '') ||
+            (squares[0] === squares[4] && squares[4] === squares[8] && squares[4] !== '') ||
+            (squares[2] === squares[4] && squares[4] === squares[6] && squares[4] !== ''))
+        { // Inicio do bloco if
+            console.log('Fim do jogo');
+        } else {
+            console.log('Próxima jogada...');
+        }
+    }
+
     toggleValue() {
-        const playValue = this.state.playValue == 'X' ? 'O' : 'X';
+        const playValue = this.state.playValue === 'X' ? 'O' : 'X';
         this.setState({ playValue })
     }
 
@@ -29,13 +54,17 @@ export default class Board extends Component {
             return
         }
 
-        let squares = new Array();
+        let squares = [];
         squares = this.state.squares
 
         this.toggleValue()
         squares[i] = this.state.playValue;
-        
+
         this.setState({ squares });
+
+        this.checkVictory();
+
+        // Aqui será chamada a função que faz com que a IA realize sua jogada.
     }
 
     render() {
