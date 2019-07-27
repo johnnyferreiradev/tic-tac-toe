@@ -11,7 +11,8 @@ export default class Board extends Component {
             '', '', '',
             '', '', ''
         ],
-        playValue: 'X'
+        playValue: 'X',
+        showBoard: true
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -26,6 +27,10 @@ export default class Board extends Component {
     //     })
     // }
 
+    hideComponent(status) {
+        this.setState({ showBoard: status })
+    }
+
     checkVictory() {
         const squares = this.state.squares
 
@@ -38,7 +43,7 @@ export default class Board extends Component {
             (squares[0] === squares[4] && squares[4] === squares[8] && squares[4] !== '') ||
             (squares[2] === squares[4] && squares[4] === squares[6] && squares[4] !== ''))
         { // Inicio do bloco if
-            console.log('Fim do jogo');
+            this.hideComponent(false);
         } else {
             console.log('Próxima jogada...');
         }
