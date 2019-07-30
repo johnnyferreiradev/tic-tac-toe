@@ -3,6 +3,17 @@ import './Board.css';
 import React, { Component } from 'react';
 import Field from '../Game/Field';
 
+const initialState = {
+    squares: [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+    ],
+    playValue: 'X',
+    draw: false,
+    showBoard: true
+}
+
 export default class Board extends Component {
 
     state = {
@@ -19,6 +30,19 @@ export default class Board extends Component {
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
         super()
         this.toggleValue = this.toggleValue.bind(this)
+    }
+
+    restart() {
+        // Code ...
+        const squares = this.state.squares;
+        squares.forEach((square, index) => {
+            squares[index] = '';
+        })
+        this.setState({...initialState}); // O state recebe todas as propriedades de initialState
+    }
+
+    leave() {
+        // Code ...
     }
 
     checkDraw() {
@@ -97,18 +121,20 @@ export default class Board extends Component {
                     </div>
                 }
 
+                {/* Este trecho de código será exibido apenas quando houver vitória */}
                 {!showBoard && !draw &&
                     <>
                         <h1>Jogador tal venceu!</h1>
-                        <button>Reiniciar</button>
+                        <button onClick={() => this.restart()}>Reiniciar</button>
                         <button>Sair</button>
                     </>
                 }
 
+                {/* Este trecho de código será exibido apenas quando houver empate */}
                 {draw &&
                     <>
                         <h1>Empate!</h1>
-                        <button>Reiniciar</button>
+                        <button onClick={() => this.restart()}>Reiniciar</button>
                         <button>Sair</button>
                     </>
                 }
