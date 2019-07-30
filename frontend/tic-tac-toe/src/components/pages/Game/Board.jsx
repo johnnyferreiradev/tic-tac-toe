@@ -12,6 +12,7 @@ export default class Board extends Component {
             '', '', ''
         ],
         playValue: 'X',
+        draw: false,
         showBoard: true
     }
 
@@ -20,8 +21,10 @@ export default class Board extends Component {
         this.toggleValue = this.toggleValue.bind(this)
     }
 
-    hideComponent(status) {
-        this.setState({ showBoard: status })
+    checkDraw() {
+        return this.state.squares.every(square => {
+            return square !== ''
+        })
     }
 
     checkVictory() {
@@ -34,10 +37,20 @@ export default class Board extends Component {
             (squares[1] === squares[4] && squares[4] === squares[7] && squares[4] !== '') ||
             (squares[2] === squares[5] && squares[5] === squares[8] && squares[5] !== '') ||
             (squares[0] === squares[4] && squares[4] === squares[8] && squares[4] !== '') ||
-            (squares[2] === squares[4] && squares[4] === squares[6] && squares[4] !== ''))
-        { // Inicio do bloco if
-            this.hideComponent(false);
+            (squares[2] === squares[4] && squares[4] === squares[6] && squares[4] !== '')) { // Inicio do bloco if
+
+            setTimeout(() => {
+                this.setState({showBoard: false});
+            }, 300);
+
         } else {
+            if (this.checkDraw()) { // Valida o empate
+                setTimeout(() => {
+                    this.setState({ showBoard: false, draw: this.checkDraw()});
+                }, 300);
+                return
+            }
+
             console.log('Próxima jogada...');
         }
     }
@@ -66,11 +79,11 @@ export default class Board extends Component {
     }
 
     render() {
-        let showBoard = this.state.showBoard;
+        const {showBoard, draw} = this.state;
 
         return (
             <>
-                {showBoard && 
+                {showBoard &&
                     <div className="board">
                         <Field playValue={this.state.squares[0]} onClick={() => this.renderSquare(0)} className="field northwest-field all-limit right-limit bottom-limit" />
                         <Field playValue={this.state.squares[1]} onClick={() => this.renderSquare(1)} className="field north-field left-limit bottom-limit right-limit" />
@@ -84,7 +97,21 @@ export default class Board extends Component {
                     </div>
                 }
 
-                {!showBoard && <p>Jogador tal venceu!</p>}
+                {!showBoard && !draw &&
+                    <>
+                        <h1>Jogador tal venceu!</h1>
+                        <button>Reiniciar</button>
+                        <button>Sair</button>
+                    </>
+                }
+
+                {draw &&
+                    <>
+                        <h1>Empate!</h1>
+                        <button>Reiniciar</button>
+                        <button>Sair</button>
+                    </>
+                }
             </>
         )
     }
