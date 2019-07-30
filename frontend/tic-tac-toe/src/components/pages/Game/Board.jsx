@@ -1,6 +1,7 @@
 import './Board.css';
 
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Field from '../Game/Field';
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     ],
     playValue: 'X',
     draw: false,
-    showBoard: true
+    showBoard: true,
+    redirect: false
 }
 
 export default class Board extends Component {
@@ -33,7 +35,6 @@ export default class Board extends Component {
     }
 
     restart() {
-        // Code ...
         const squares = this.state.squares;
         squares.forEach((square, index) => {
             squares[index] = '';
@@ -41,8 +42,14 @@ export default class Board extends Component {
         this.setState({...initialState}); // O state recebe todas as propriedades de initialState
     }
 
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
+    }
+
     leave() {
-        // Code ...
+        this.setState({redirect: true});
     }
 
     checkDraw() {
@@ -126,7 +133,9 @@ export default class Board extends Component {
                     <>
                         <h1>Jogador tal venceu!</h1>
                         <button onClick={() => this.restart()}>Reiniciar</button>
-                        <button>Sair</button>
+
+                        {this.renderRedirect()}
+                        <button onClick={() => this.leave()}>Sair</button>
                     </>
                 }
 
@@ -135,7 +144,9 @@ export default class Board extends Component {
                     <>
                         <h1>Empate!</h1>
                         <button onClick={() => this.restart()}>Reiniciar</button>
-                        <button>Sair</button>
+                        
+                        {this.renderRedirect()}
+                        <button onClick={() => this.leave()}>Sair</button>
                     </>
                 }
             </>
