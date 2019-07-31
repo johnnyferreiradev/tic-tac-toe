@@ -1,7 +1,14 @@
 import React from 'react';
 
-const Game = () => (
-    <h1>Página do Game</h1>
-)
+export default class Game extends React.Component {
+    componentDidMount() {
+        const { state } = this.props.location; // Recebe atravez do Link
+        console.log(state);
+    }
 
-export default Game;
+    render(){
+        return (
+            <h1>Pagina do game</h1>
+        )
+    }
+}

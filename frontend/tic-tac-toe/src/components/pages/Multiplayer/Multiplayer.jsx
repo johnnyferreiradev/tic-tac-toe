@@ -1,7 +1,11 @@
 import React from 'react';
 
+import Lobby from './Lobby';
+
 const Multiplayer = () => (
-    <h1>Multiplayer page</h1>
+    <>
+        <Lobby teste="Teste 1"/>
+    </>
 );
 
 export default Multiplayer;
