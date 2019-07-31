@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Header from '../Header/Header';
+
+import './Lobby.css';
+
 export default class Lobby extends React.Component {
     state = {
         player1: '',
@@ -18,14 +22,19 @@ export default class Lobby extends React.Component {
     render() {
         return (
             <>
+                <Header title="Modo Multiplayer" />
                 <div className="lobby">
-                    <h1>Modo Multiplayer</h1>
-
-                    <label htmlFor="gamer1">Jogador 1 (X)</label>
-                    <input type="text" id="gamer1" placeholder="Nome do jogador 1..." onChange={e => this.updateField(e, 1)} />
-
-                    <label htmlFor="gamer2">Jogador 2 (O)</label>
-                    <input type="text" id="gamer2" placeholder="Nome do jogador 2..." onChange={e => this.updateField(e, 2)} />
+                    <div className="lobby-form">
+                        <div className="lobby-form-group">
+                            <label htmlFor="gamer1">Jogador 1 (X)</label>
+                            <input type="text" id="gamer1" placeholder="Nome do jogador 1..." onChange={e => this.updateField(e, 1)} />
+                        </div>
+                        <p className="lobby-vs">VS.</p>
+                        <div className="lobby-form-group">
+                            <label htmlFor="gamer2">Jogador 2 (O)</label>
+                            <input type="text" id="gamer2" placeholder="Nome do jogador 2..." onChange={e => this.updateField(e, 2)} />
+                        </div>
+                    </div>
 
                     {/* Estratégia utilizada para enviar props entre componentes por meio do Link */}
                     <Link to={{ // O state está sendo enviado por meio do Link...
