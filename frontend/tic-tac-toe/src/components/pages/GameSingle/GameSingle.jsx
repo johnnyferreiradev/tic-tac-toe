@@ -1,9 +1,10 @@
 import React from 'react';
+import Board from '../../Main/Board/Board';
 
 export default class GameSingle extends React.Component {
     render(){
         return (
-            <h1>Pagina do game mode 1 - Singleplayer</h1>
+            <Board gamemode="single"/>
         )
     }
 }

@@ -1,14 +1,16 @@
 import React from 'react';
+import Board from '../../Main/Board/Board';
+
+import './GameMulti.css';
 
 export default class GameMulti extends React.Component {
-    componentDidMount() {
-        const { state } = this.props.location; // Recebe atravez do Link
-        console.log(state);
-    }
-
     render(){
+        const { player1, player2 } = this.props.location.state; // Recebe atravez do Link
+
         return (
-            <h1>Pagina do game mode 2 - Multiplayer</h1>
+            <div className="game-multi">
+                <Board player1={player1} player2={player2} gamemode="multi"/>
+            </div>
         )
     }
 }

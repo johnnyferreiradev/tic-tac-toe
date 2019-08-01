@@ -26,7 +26,10 @@ export default class Board extends Component {
         ],
         playValue: 'X',
         draw: false,
-        showBoard: true
+        showBoard: true,
+        player1: '',
+        player2: '',
+        winner: ''
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -70,8 +73,16 @@ export default class Board extends Component {
             (squares[0] === squares[4] && squares[4] === squares[8] && squares[4] !== '') ||
             (squares[2] === squares[4] && squares[4] === squares[6] && squares[4] !== '')) { // Inicio do bloco if
 
+            // Verifica se quem venceu foi X ou O
+            let winner;
+            if (this.state.playValue === 'X') {
+                winner = this.state.player1;
+            } else if (this.state.playValue === 'O') {
+                winner = this.state.player2;
+            }
+
             setTimeout(() => {
-                this.setState({showBoard: false});
+                this.setState({showBoard: false, winner }); // esconde o tabuleiro e atualiza o vencedor
             }, 300);
 
         } else {
@@ -109,6 +120,30 @@ export default class Board extends Component {
         // Aqui será chamada a função que faz com que a IA realize sua jogada.
     }
 
+    componentDidMount() {
+        const { gamemode } = this.props;
+        
+        if (gamemode === 'multi') {
+            const { player1, player2 } = this.props;
+
+            if (player1 === '') {
+                this.setState({ player1: 'Jogador 1' });
+            } else {
+                this.setState({ player1 });
+            }
+
+            if (player2 === '') {
+                this.setState({ player2: 'Jogador 2' });
+            } else {
+                this.setState({ player2 });
+            }
+
+
+        } else if (gamemode === 'single') {
+            console.log('modo singleplayer selecionado');
+        }
+    }
+
     render() {
         const {showBoard, draw} = this.state;
 
@@ -131,7 +166,7 @@ export default class Board extends Component {
                 {/* Este trecho de código será exibido apenas quando houver vitória */}
                 {!showBoard && !draw &&
                     <>
-                        <h1>Jogador tal venceu!</h1>
+                        <h1><span>{this.state.winner}</span> venceu!</h1> {/* Criar logica de exibir vencedor */}
                         <button onClick={() => this.restart()}>Reiniciar</button>
 
                         {this.renderRedirect()}
