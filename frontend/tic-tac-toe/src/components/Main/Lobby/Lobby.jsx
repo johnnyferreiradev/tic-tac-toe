@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../Header/Header';
+import Title from '../../templates/Title/Title';
 
 import './Lobby.css';
 
@@ -22,7 +22,7 @@ export default class Lobby extends React.Component {
     render() {
         return (
             <>
-                <Header title="Modo Multiplayer" />
+                <Title title="Modo Multiplayer" />
                 <div className="lobby">
                     <div className="lobby-form">
                         <div className="lobby-form-group">

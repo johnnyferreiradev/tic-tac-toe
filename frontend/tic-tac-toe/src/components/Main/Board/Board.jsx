@@ -2,7 +2,7 @@ import './Board.css';
 
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Field from '../Game/Field';
+import Field from '../Field/Field';
 
 const initialState = {
     squares: [

@@ -1,5 +1,5 @@
 import React from  'react';
-import Board from '../Game/Board';
+import Board from '../../Main/Board/Board';
 
 import './Singleplayer.css';
 

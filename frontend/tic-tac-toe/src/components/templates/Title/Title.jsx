@@ -1,10 +1,10 @@
 import React from 'react';
-import './Header.css';
+import './Title.css';
 
-const Header = props => (
+const Title = props => (
     <h1 className="header-title">
         {props.title}
     </h1>
 )
 
-export default Header;
+export default Title;

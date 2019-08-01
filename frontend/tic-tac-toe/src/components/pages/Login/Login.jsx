@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import  './Login.css';
-import '../../General-styles/styles.css';
+// import '../../../assets/General-styles/styles.css';
 
 const Login = () => (
     <section className="general-section">

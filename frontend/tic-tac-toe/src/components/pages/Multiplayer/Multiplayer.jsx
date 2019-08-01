@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Lobby from './Lobby';
+import Lobby from '../../Main/Lobby/Lobby';
 
 const Multiplayer = () => (
     <>
