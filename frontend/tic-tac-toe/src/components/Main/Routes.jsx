@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
-import Game from '../pages/Game/Game';
+import GameMulti from '../pages/GameMulti/GameMulti';
+import GameSingle from '../pages/GameSingle/GameSingle';
 import Header from '../templates/Header/Header';
 import Singleplayer from '../pages/Singleplayer/Singleplayer';
 import Multiplayer from '../pages/Multiplayer/Multiplayer';
@@ -15,7 +16,8 @@ const Routes = () => (
         <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
-            <Route path="/game" component={Game} />
+            <Route path="/gamemode1" component={GameSingle} />
+            <Route path="/gamemode2" component={GameMulti} />
             <Route path="/singleplayer" component={Singleplayer} />
             <Route path="/multiplayer" component={Multiplayer} />
             <Route path="/register" component={Register} />

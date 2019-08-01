@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Game extends React.Component {
+export default class GameMulti extends React.Component {
     componentDidMount() {
         const { state } = this.props.location; // Recebe atravez do Link
         console.log(state);
@@ -8,7 +8,7 @@ export default class Game extends React.Component {
 
     render(){
         return (
-            <h1>Pagina do game</h1>
+            <h1>Pagina do game mode 2 - Multiplayer</h1>
         )
     }
 }

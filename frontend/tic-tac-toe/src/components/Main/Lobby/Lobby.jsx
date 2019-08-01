@@ -38,7 +38,7 @@ export default class Lobby extends React.Component {
 
                     {/* Estratégia utilizada para enviar props entre componentes por meio do Link */}
                     <Link to={{ // O state está sendo enviado por meio do Link...
-                        pathname: '/game', // No componente <Game /> as informações passadas estarão disponíveis em this.props.location
+                        pathname: '/gamemode2', // No componente <Game /> as informações passadas estarão disponíveis em this.props.location
                         state: {
                             player1: this.state.player1,
                             player2: this.state.player2
