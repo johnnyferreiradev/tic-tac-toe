@@ -29,6 +29,7 @@ export default class Board extends Component {
         showBoard: true,
         player1: '',
         player2: '',
+        currentPlayer: '',
         winner: ''
     }
 
@@ -42,7 +43,8 @@ export default class Board extends Component {
         squares.forEach((square, index) => {
             squares[index] = '';
         })
-        this.setState({...initialState}); // O state recebe todas as propriedades de initialState
+        this.setState({ ...initialState }); // O state recebe todas as propriedades de initialState
+        this.setState({ currentPlayer: this.state.player1 });
     }
 
     renderRedirect() {
@@ -52,13 +54,21 @@ export default class Board extends Component {
     }
 
     leave() {
-        this.setState({redirect: true});
+        this.setState({ redirect: true });
     }
 
     checkDraw() {
         return this.state.squares.every(square => {
             return square !== ''
         })
+    }
+
+    toggleCurrentPlayer() {
+        if (this.state.playValue === 'O') {
+            this.setState({ currentPlayer: this.state.player1 });
+        } else if (this.state.playValue === 'X') {
+            this.setState({ currentPlayer: this.state.player2 });
+        }
     }
 
     checkVictory() {
@@ -75,20 +85,20 @@ export default class Board extends Component {
 
             // Verifica se quem venceu foi X ou O
             let winner;
-            if (this.state.playValue === 'X') {
-                winner = this.state.player1;
-            } else if (this.state.playValue === 'O') {
+            if (this.state.playValue === 'O') {
                 winner = this.state.player2;
+            } else if (this.state.playValue === 'X') {
+                winner = this.state.player1;
             }
 
             setTimeout(() => {
-                this.setState({showBoard: false, winner }); // esconde o tabuleiro e atualiza o vencedor
+                this.setState({ showBoard: false, winner }); // esconde o tabuleiro e atualiza o vencedor
             }, 300);
 
         } else {
             if (this.checkDraw()) { // Valida o empate
                 setTimeout(() => {
-                    this.setState({ showBoard: false, draw: this.checkDraw()});
+                    this.setState({ showBoard: false, draw: this.checkDraw() });
                 }, 300);
                 return
             }
@@ -110,7 +120,10 @@ export default class Board extends Component {
         let squares = [];
         squares = this.state.squares
 
-        this.toggleValue()
+        this.toggleValue();
+
+        this.toggleCurrentPlayer();
+
         squares[i] = this.state.playValue;
 
         this.setState({ squares });
@@ -121,10 +134,10 @@ export default class Board extends Component {
     }
 
     componentDidMount() {
-        const { gamemode } = this.props;
-        
+        const { gamemode } = this.props.location.state;
+
         if (gamemode === 'multi') {
-            const { player1, player2 } = this.props;
+            const { player1, player2 } = this.props.location.state;
 
             if (player1 === '') {
                 this.setState({ player1: 'Jogador 1' });
@@ -138,6 +151,7 @@ export default class Board extends Component {
                 this.setState({ player2 });
             }
 
+            this.setState({ currentPlayer: player1 });
 
         } else if (gamemode === 'single') {
             console.log('modo singleplayer selecionado');
@@ -145,21 +159,32 @@ export default class Board extends Component {
     }
 
     render() {
-        const {showBoard, draw} = this.state;
+        const { showBoard, draw } = this.state;
 
         return (
             <>
                 {showBoard &&
-                    <div className="board">
-                        <Field playValue={this.state.squares[0]} onClick={() => this.renderSquare(0)} className="field northwest-field all-limit right-limit bottom-limit" />
-                        <Field playValue={this.state.squares[1]} onClick={() => this.renderSquare(1)} className="field north-field left-limit bottom-limit right-limit" />
-                        <Field playValue={this.state.squares[2]} onClick={() => this.renderSquare(2)} className="field northeast-field left-limit bottom-limit" />
-                        <Field playValue={this.state.squares[3]} onClick={() => this.renderSquare(3)} className="field west-field top-limit right-limit bottom-limit" />
-                        <Field playValue={this.state.squares[4]} onClick={() => this.renderSquare(4)} className="field center-field top-limit right-limit bottom-limit left-limit" />
-                        <Field playValue={this.state.squares[5]} onClick={() => this.renderSquare(5)} className="field east-field left-limit top-limit bottom-limit" />
-                        <Field playValue={this.state.squares[6]} onClick={() => this.renderSquare(6)} className="field southwest-field right-limit top-limit" />
-                        <Field playValue={this.state.squares[7]} onClick={() => this.renderSquare(7)} className="field south-field right-limit top-limit left-limit" />
-                        <Field playValue={this.state.squares[8]} onClick={() => this.renderSquare(8)} className="field southeast-field left-limit top-limit" />
+                    <div className="container-board">
+                        <div className="next-player">
+                            <span>Vez de:</span> 
+                            <h2>{this.state.currentPlayer} ({this.state.playValue})</h2>
+                        </div>
+                        <div className="board" onClick={this.props.onClick}>
+                            <Field playValue={this.state.squares[0]} onClick={() => this.renderSquare(0)} className="field northwest-field all-limit right-limit bottom-limit" />
+                            <Field playValue={this.state.squares[1]} onClick={() => this.renderSquare(1)} className="field north-field left-limit bottom-limit right-limit" />
+                            <Field playValue={this.state.squares[2]} onClick={() => this.renderSquare(2)} className="field northeast-field left-limit bottom-limit" />
+                            <Field playValue={this.state.squares[3]} onClick={() => this.renderSquare(3)} className="field west-field top-limit right-limit bottom-limit" />
+                            <Field playValue={this.state.squares[4]} onClick={() => this.renderSquare(4)} className="field center-field top-limit right-limit bottom-limit left-limit" />
+                            <Field playValue={this.state.squares[5]} onClick={() => this.renderSquare(5)} className="field east-field left-limit top-limit bottom-limit" />
+                            <Field playValue={this.state.squares[6]} onClick={() => this.renderSquare(6)} className="field southwest-field right-limit top-limit" />
+                            <Field playValue={this.state.squares[7]} onClick={() => this.renderSquare(7)} className="field south-field right-limit top-limit left-limit" />
+                            <Field playValue={this.state.squares[8]} onClick={() => this.renderSquare(8)} className="field southeast-field left-limit top-limit" />
+                        </div>
+                        <div className="actions">
+                            <button onClick={() => this.restart()}>Reiniciar</button>
+                            {this.renderRedirect()}
+                            <button onClick={() => this.leave()}>Sair</button>
+                        </div>
                     </div>
                 }
 
@@ -179,7 +204,7 @@ export default class Board extends Component {
                     <>
                         <h1>Empate!</h1>
                         <button onClick={() => this.restart()}>Reiniciar</button>
-                        
+
                         {this.renderRedirect()}
                         <button onClick={() => this.leave()}>Sair</button>
                     </>

@@ -11,8 +11,8 @@
 div.board {
     background-color: #fff;
     max-width: 700px;
-    width: 500px;
-    height: 400px;
+    width: 480px;
+    height: 380px;
     box-shadow: 2px 5px 5px #0002;
     border-radius: 10px;
     padding: 20px;
@@ -24,6 +24,32 @@ div.board {
     grid-template-areas:    'northwest north northeast'
                             'west center east'
                             'southwest south southeast';
+}
+
+.container-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-board .actions{
+    padding-top: 20px;
+}
+
+.next-player {
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-player h2 {
+    margin: 10px 0px;
+    font-size: 28px;
+    color: #333;
 }
 
 /* Desenho do tabuleiro do jogo */

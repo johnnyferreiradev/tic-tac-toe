@@ -8,7 +8,8 @@ import './Lobby.css';
 export default class Lobby extends React.Component {
     state = {
         player1: '',
-        player2: ''
+        player2: '',
+        gamemode: 'multi'
     }
 
     updateField(event, player) {
@@ -38,10 +39,11 @@ export default class Lobby extends React.Component {
 
                     {/* Estratégia utilizada para enviar props entre componentes por meio do Link */}
                     <Link to={{ // O state está sendo enviado por meio do Link...
-                        pathname: '/gamemode2', // No componente <Game /> as informações passadas estarão disponíveis em this.props.location
+                        pathname: '/board', // No componente <Game /> as informações passadas estarão disponíveis em this.props.location
                         state: {
                             player1: this.state.player1,
-                            player2: this.state.player2
+                            player2: this.state.player2,
+                            gamemode: this.state.gamemode
                         }
                     }} className="btn-start">Jogar!</Link>
                 </div>

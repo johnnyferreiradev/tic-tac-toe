@@ -5,6 +5,7 @@ import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
 import GameMulti from '../pages/GameMulti/GameMulti';
 import GameSingle from '../pages/GameSingle/GameSingle';
+import Board from './Board/Board';
 import Header from '../templates/Header/Header';
 import Singleplayer from '../pages/Singleplayer/Singleplayer';
 import Multiplayer from '../pages/Multiplayer/Multiplayer';
@@ -18,6 +19,7 @@ const Routes = () => (
             <Route path="/login" component={Login} />
             <Route path="/gamemode1" component={GameSingle} />
             <Route path="/gamemode2" component={GameMulti} />
+            <Route path="/board" component={Board} />
             <Route path="/singleplayer" component={Singleplayer} />
             <Route path="/multiplayer" component={Multiplayer} />
             <Route path="/register" component={Register} />
