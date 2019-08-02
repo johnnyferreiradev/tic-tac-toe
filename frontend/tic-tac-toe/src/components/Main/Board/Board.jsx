@@ -102,8 +102,6 @@ export default class Board extends Component {
                 }, 300);
                 return
             }
-
-            console.log('Próxima jogada...');
         }
     }
 
