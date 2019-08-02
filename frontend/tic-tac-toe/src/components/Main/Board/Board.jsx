@@ -166,7 +166,7 @@ export default class Board extends Component {
                 {showBoard &&
                     <div className="container-board">
                         <div className="next-player">
-                            <span>Vez de:</span> 
+                            <span>Vez de:</span>
                             <h2>{this.state.currentPlayer} ({this.state.playValue})</h2>
                         </div>
                         <div className="board" onClick={this.props.onClick}>
@@ -181,33 +181,36 @@ export default class Board extends Component {
                             <Field playValue={this.state.squares[8]} onClick={() => this.renderSquare(8)} className="field southeast-field left-limit top-limit" />
                         </div>
                         <div className="actions">
-                            <button onClick={() => this.restart()}>Reiniciar</button>
+                            <button onClick={() => this.restart()} className="restart">Reiniciar</button>
                             {this.renderRedirect()}
-                            <button onClick={() => this.leave()}>Sair</button>
+                            <button onClick={() => this.leave()} className="leave">Sair</button>
                         </div>
                     </div>
                 }
 
                 {/* Este trecho de código será exibido apenas quando houver vitória */}
                 {!showBoard && !draw &&
-                    <>
-                        <h1><span>{this.state.winner}</span> venceu!</h1> {/* Criar logica de exibir vencedor */}
-                        <button onClick={() => this.restart()}>Reiniciar</button>
-
-                        {this.renderRedirect()}
-                        <button onClick={() => this.leave()}>Sair</button>
-                    </>
+                    <div className="show-winner">
+                        <h1 className="game-result">{this.state.winner}</h1>
+                        <h3 className="win">Venceu!</h3>
+                        <div className="btns-game-result">
+                            <button onClick={() => this.restart()} className="restart">Reiniciar</button>
+                            {this.renderRedirect()}
+                            <button onClick={() => this.leave()} className="leave">Sair</button>
+                        </div>
+                    </div>
                 }
 
                 {/* Este trecho de código será exibido apenas quando houver empate */}
                 {draw &&
-                    <>
-                        <h1>Empate!</h1>
-                        <button onClick={() => this.restart()}>Reiniciar</button>
-
-                        {this.renderRedirect()}
-                        <button onClick={() => this.leave()}>Sair</button>
-                    </>
+                    <div className="show-winner">
+                        <h1 className="game-result">Empate!</h1>
+                        <div className="btns-game-result">
+                            <button onClick={() => this.restart()} className="restart">Reiniciar</button>
+                            {this.renderRedirect()}
+                            <button onClick={() => this.leave()} className="leave">Sair</button>
+                        </div>
+                    </div>
                 }
             </>
         )
