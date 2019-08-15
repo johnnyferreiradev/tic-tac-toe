@@ -1,0 +1,70 @@
+.lobby-single {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lobby-single form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lobby-single form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.lobby-single form .form-group label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #888;
+}
+
+.lobby-single form .form-group input {
+    font-size: 28px;
+    padding: 10px;
+    outline: none;
+    border: 3px solid #888;
+    border-radius: 10px;
+    color: #333;
+}
+
+.lobby-single form .form-group input:hover {
+    border: 3px solid rgb(169, 113, 233);
+}
+
+.lobby-single form .form-group input:focus {
+    border: 3px solid rgb(169, 113, 233);
+}
+
+.lobby-single form .form-group button {
+    margin-top: 20px;
+    font-size: 48px;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    background: rgb(169, 113, 233);
+    padding: 10px 92px;
+    border: none;
+    border-radius: 20px;
+    transition: all .2s;
+    box-shadow: 4px 6px 10px #5555;
+}
+
+.lobby-single form .form-group button:hover {
+    background: rgb(133, 67, 209);
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.lobby-single form .form-group button:active {
+    box-shadow: none;
+}

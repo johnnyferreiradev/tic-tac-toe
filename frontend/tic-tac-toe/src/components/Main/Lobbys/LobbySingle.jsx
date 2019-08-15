@@ -1,11 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import './LobbySingle.css';
+
+import Title from '../../templates/Title/Title';
 
 export default class LobbySingle extends React.Component {
 
 
-    render(){
+    render() {
         return (
-            <h1>Lobby Single Player</h1>
+            <>
+                <Title title="Modo Singleplayer" />
+                <main className="lobby-single">
+                    <h1>Ranking</h1>
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="player-name">Nome</label>
+                            <input type="text" id="player-name" />
+                        </div>
+                        <div className="form-group">
+                            <button>Jogar!</button>
+                        </div>
+                    </form>
+                </main>
+            </>
         );
     }
 }
