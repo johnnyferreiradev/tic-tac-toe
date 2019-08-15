@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Title from '../../templates/Title/Title';
 
-import './Lobby.css';
+import './LobbyMulti.css';
 
 export default class Lobby extends React.Component {
     state = {

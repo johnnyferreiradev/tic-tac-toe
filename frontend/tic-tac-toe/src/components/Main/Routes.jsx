@@ -2,14 +2,13 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
 import Home from '../pages/Home/Home';
-import GameMulti from '../pages/GameMulti/GameMulti';
-import GameSingle from '../pages/GameSingle/GameSingle';
 import Board from './Board/Board';
 import Header from '../templates/Header/Header';
-import Singleplayer from '../pages/Singleplayer/Singleplayer';
-import Multiplayer from '../pages/Multiplayer/Multiplayer';
-import Register from '../pages/Register/Register';
+import LobbySingle from '../Main/Lobbys/LobbySingle';
+import LobbyMulti from '../Main/Lobbys/LobbyMulti';
+
 
 const Routes = () => (
     <BrowserRouter>
@@ -17,11 +16,9 @@ const Routes = () => (
         <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
-            <Route path="/gamemode1" component={GameSingle} />
-            <Route path="/gamemode2" component={GameMulti} />
             <Route path="/board" component={Board} />
-            <Route path="/singleplayer" component={Singleplayer} />
-            <Route path="/multiplayer" component={Multiplayer} />
+            <Route path="/singleplayer" component={LobbySingle} />
+            <Route path="/multiplayer" component={LobbyMulti} />
             <Route path="/register" component={Register} />
         </Switch>
     </BrowserRouter>
