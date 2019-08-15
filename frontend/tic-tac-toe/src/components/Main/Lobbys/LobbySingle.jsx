@@ -4,6 +4,8 @@ import './LobbySingle.css';
 
 import Title from '../../templates/Title/Title';
 
+import Ranking from '../Ranking/Ranking';
+
 export default class LobbySingle extends React.Component {
 
 
@@ -12,7 +14,7 @@ export default class LobbySingle extends React.Component {
             <>
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
-                    <h1>Ranking</h1>
+                    <Ranking />
                     <form>
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>

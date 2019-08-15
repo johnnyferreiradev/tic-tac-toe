@@ -1,0 +1,46 @@
+.ranking {
+    width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 4px 6px 10px #5555;
+}
+
+.ranking .ranking-item {
+    background: #fefefe;
+    border-radius: 8px 8px 0px 0px;
+    border-bottom: 2px solid #eee;
+    padding: 20px 20px;
+    color: #555;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ranking .ranking-item:last-child {
+    border-radius: 8px;
+}
+
+.ranking .ranking-item h3 {
+    color: #888;
+}
+
+.ranking .ranking-item:nth-child(2) .position {
+    color: gold;
+}
+
+.ranking .ranking-item:nth-child(3) .position {
+    color: silver;
+}
+
+.ranking .ranking-item:nth-child(4) .position {
+    color: #cd7f32;
+}
+
+.ranking .ranking-item .position {
+    color: rgb(169, 113, 233);
+}
+
+.ranking .ranking-item .player-score {
+    color: rgb(169, 113, 233);
+}
