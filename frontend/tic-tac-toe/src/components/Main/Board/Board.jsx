@@ -152,7 +152,14 @@ export default class Board extends Component {
             this.setState({ currentPlayer: player1 });
 
         } else if (gamemode === 'single') {
-            console.log('modo singleplayer selecionado');
+            const { player } = this.props.location.state;
+            if (player === '') {
+                this.setState({ player1: 'Você', player2: 'Máquina' });
+            } else {
+                this.setState({ player1: player, player2: 'Máquina' });
+            }
+
+            this.setState({ currentPlayer: player });
         }
     }
 

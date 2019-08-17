@@ -45,7 +45,7 @@
     border: 3px solid rgb(169, 113, 233);
 }
 
-.lobby-single form .form-group button {
+.lobby-single form .form-group .single-btn-play {
     margin-top: 20px;
     font-size: 48px;
     text-decoration: none;
@@ -59,12 +59,12 @@
     box-shadow: 4px 6px 10px #5555;
 }
 
-.lobby-single form .form-group button:hover {
+.lobby-single form .form-group .single-btn-play:hover {
     background: rgb(133, 67, 209);
     transition: all .2s;
     cursor: pointer;
 }
 
-.lobby-single form .form-group button:active {
+.lobby-single form .form-group .single-btn-play:active {
     box-shadow: none;
 }
