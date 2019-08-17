@@ -30,7 +30,8 @@ export default class Board extends Component {
         player1: '',
         player2: '',
         currentPlayer: '',
-        winner: ''
+        winner: '',
+        score: ''
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -128,11 +129,14 @@ export default class Board extends Component {
 
         this.checkVictory();
 
+        console.log(this.state.player1);
+
         // Aqui será chamada a função que faz com que a IA realize sua jogada.
     }
 
     componentDidMount() {
         const { gamemode } = this.props.location.state;
+        console.log(gamemode);
 
         if (gamemode === 'multi') {
             const { player1, player2 } = this.props.location.state;
@@ -153,18 +157,18 @@ export default class Board extends Component {
 
         } else if (gamemode === 'single') {
             const { player } = this.props.location.state;
+            
             if (player === '') {
-                this.setState({ player1: 'Você', player2: 'Máquina' });
+                this.setState({ player1: 'Você', player2: 'Máquina', currentPlayer: 'Você' });
             } else {
-                this.setState({ player1: player, player2: 'Máquina' });
+                this.setState({ player1: player, player2: 'Máquina', currentPlayer: player });
             }
-
-            this.setState({ currentPlayer: player });
         }
     }
 
     render() {
         const { showBoard, draw } = this.state;
+        const { gamemode } = this.props.location.state;
 
         return (
             <>
@@ -172,6 +176,7 @@ export default class Board extends Component {
                     <div className="container-board">
                         <div className="next-player">
                             <span>Vez de:</span>
+                            {this.state.player1}
                             <h2>{this.state.currentPlayer} ({this.state.playValue})</h2>
                         </div>
                         <div className="board" onClick={this.props.onClick}>
@@ -198,6 +203,7 @@ export default class Board extends Component {
                     <div className="show-winner">
                         <h1 className="game-result">{this.state.winner}</h1>
                         <h3 className="win">Venceu!</h3>
+                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontuação: 3000!</h3>}
                         <div className="btns-game-result">
                             <button onClick={() => this.restart()} className="restart">Reiniciar</button>
                             {this.renderRedirect()}
