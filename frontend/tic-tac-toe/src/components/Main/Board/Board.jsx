@@ -1,8 +1,11 @@
-import './Board.css';
-
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+
+import './Board.css';
+
 import Field from '../Field/Field';
+
+import api from '../../../services/api';
 
 const initialState = {
     squares: [
@@ -111,6 +114,12 @@ export default class Board extends Component {
         this.setState({ playValue })
     }
 
+    // Essa função ira passar o estado atual do jogo e o numero de tentativas e retornará um novo estado
+    // do tabuleiro e uma pontuação atualizada
+    machineTurn() {
+        console.log('faz a requisição ao back para a jogada da maquina');
+    }
+
     renderSquare(i) {
         if (this.state.squares[i] !== '') {
             return
@@ -129,9 +138,9 @@ export default class Board extends Component {
 
         this.checkVictory();
 
-        console.log(this.state.player1);
-
-        // Aqui será chamada a função que faz com que a IA realize sua jogada.
+        if (this.props.location.state.gamemode === 'single') {
+            this.machineTurn();
+        }
     }
 
     componentDidMount() {
@@ -157,7 +166,7 @@ export default class Board extends Component {
 
         } else if (gamemode === 'single') {
             const { player } = this.props.location.state;
-            
+
             if (player === '') {
                 this.setState({ player1: 'Você', player2: 'Máquina', currentPlayer: 'Você' });
             } else {
@@ -176,7 +185,6 @@ export default class Board extends Component {
                     <div className="container-board">
                         <div className="next-player">
                             <span>Vez de:</span>
-                            {this.state.player1}
                             <h2>{this.state.currentPlayer} ({this.state.playValue})</h2>
                         </div>
                         <div className="board" onClick={this.props.onClick}>
