@@ -17,6 +17,6 @@ requireDir('./src/models');
 // Rotas
 app.use('/api', require('./src/routes'));
 
-app.listen(3000, () => {
-    console.log('Backend executando na porta 3000...');
+app.listen(3333, () => {
+    console.log('Backend executando na porta 3333...');
 })
