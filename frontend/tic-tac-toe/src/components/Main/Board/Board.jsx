@@ -116,8 +116,13 @@ export default class Board extends Component {
 
     // Essa função ira passar o estado atual do jogo e o numero de tentativas e retornará um novo estado
     // do tabuleiro e uma pontuação atualizada
-    machineTurn() {
-        console.log('faz a requisição ao back para a jogada da maquina');
+    async machineTurn() {
+        const response = await api.post('/playmachine', {
+            currentBoard: { ...this.state.squares }
+        });
+
+        console.log(response);
+        // console.log('faz a requisição ao back para a jogada da maquina');
     }
 
     renderSquare(i) {
