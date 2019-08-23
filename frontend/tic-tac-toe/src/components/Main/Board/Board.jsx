@@ -118,7 +118,7 @@ export default class Board extends Component {
     // do tabuleiro e uma pontuação atualizada
     async machineTurn() {
         const response = await api.post('/playmachine', {
-            currentBoard: { ...this.state.squares }
+            currentBoard: this.state.squares
         });
 
         console.log(response);
