@@ -8,16 +8,17 @@ const randomPlay = (squares) => {
     
     const whitoutUndefined = freeSquares.filter(value => value !== undefined);
     
-    const nextPlay = Math.floor(Math.random() * whitoutUndefined.length);
-    
-    return nextPlay;
+    const indexNextPlay = Math.floor(Math.random() * whitoutUndefined.length);
+
+    return whitoutUndefined[indexNextPlay];
 }
 
 module.exports = {
 
     play(req, res) {
         // return res.json(req.body);
-        randomPlay(req.body.currentBoard);
+        const nextPlay = randomPlay(req.body.currentBoard);
+        console.log(nextPlay);
         // return res.json(req.body);
     }
 }
