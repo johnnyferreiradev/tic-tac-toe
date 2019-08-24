@@ -34,7 +34,8 @@ export default class Board extends Component {
         player2: '',
         currentPlayer: '',
         winner: '',
-        score: ''
+        score: '',
+        playerTurn: true
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -134,6 +135,7 @@ export default class Board extends Component {
             squares[index] = this.state.playValue;
 
             this.setState({ squares });
+            this.setState({ playerTurn: true });
 
             let win = this.checkVictory();
 
@@ -141,10 +143,15 @@ export default class Board extends Component {
 
             this.toggleValue();
 
-        }, 1000);
+        }, 300);
     }
 
     renderSquare(i) {
+        // Impede que o jogador faça duas jogadas seguidas antes da maquina
+        if (this.props.location.state.gamemode === 'single' && !this.state.playerTurn) {
+            return 
+        }
+
         if (this.state.squares[i] !== '') {
             return
         }
@@ -165,6 +172,7 @@ export default class Board extends Component {
         if (win) return;
 
         if (this.props.location.state.gamemode === 'single') {
+            this.setState({ playerTurn: false });
             let stopGame = this.machineTurn();
             if (stopGame) return;
         }
