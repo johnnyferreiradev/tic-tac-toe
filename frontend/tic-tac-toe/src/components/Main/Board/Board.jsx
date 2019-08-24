@@ -99,6 +99,8 @@ export default class Board extends Component {
                 this.setState({ showBoard: false, winner }); // esconde o tabuleiro e atualiza o vencedor
             }, 300);
 
+            return true;
+
         } else {
             if (this.checkDraw()) { // Valida o empate
                 setTimeout(() => {
@@ -121,8 +123,25 @@ export default class Board extends Component {
             currentBoard: this.state.squares
         });
 
-        console.log(response);
-        // console.log('faz a requisição ao back para a jogada da maquina');
+        let index = response.data;
+
+        let squares = [];
+        squares = this.state.squares;
+
+        setTimeout(() => {
+            this.toggleCurrentPlayer();
+
+            squares[index] = this.state.playValue;
+
+            this.setState({ squares });
+
+            let win = this.checkVictory();
+
+            if (win) return true;
+
+            this.toggleValue();
+
+        }, 1000);
     }
 
     renderSquare(i) {
@@ -141,10 +160,13 @@ export default class Board extends Component {
 
         this.setState({ squares });
 
-        this.checkVictory();
+        let win = this.checkVictory();
+
+        if (win) return;
 
         if (this.props.location.state.gamemode === 'single') {
-            this.machineTurn();
+            let stopGame = this.machineTurn();
+            if (stopGame) return;
         }
     }
 

@@ -16,9 +16,8 @@ const randomPlay = (squares) => {
 module.exports = {
 
     play(req, res) {
-        // return res.json(req.body);
         const nextPlay = randomPlay(req.body.currentBoard);
-        console.log(nextPlay);
-        // return res.json(req.body);
+
+        return res.json(nextPlay);
     }
 }
