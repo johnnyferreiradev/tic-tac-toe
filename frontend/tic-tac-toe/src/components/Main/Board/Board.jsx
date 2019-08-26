@@ -180,7 +180,6 @@ export default class Board extends Component {
 
     componentDidMount() {
         const { gamemode } = this.props.location.state;
-        console.log(gamemode);
 
         if (gamemode === 'multi') {
             const { player1, player2 } = this.props.location.state;
