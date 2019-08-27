@@ -1,9 +1,61 @@
+// // Retorna o indice de um array cujo valor (numeric) é o maior entre todos.
+// function limpaVetor(array, squares, highestValue) {
+//     for (let i = 0; i < 9; i++) {
+//         if (array[i] == highestValue && squares[i] == 'X') {
+//             array[i] = -1000;
+//         }
+//     }
+//     return array;
+// }
 
+// function highestValueIndexFunc(array, squares) {
+//     console.log(`Array: ${array}`);
+//     let highestValueIndex = 0;
+//     let highestValue = 0;
+
+//     for (let i = 0; i < 9; i++) {
+//         // Caso exista valores iguais, sera selecionado a ultima ocorrencia cujo X não esta marcado
+//         if (array[i] > highestValue) {
+//             highestValue = array[i];
+//             highestValueIndex = i;
+//         }
+//     }
+
+//     if (squares[highestValueIndex] == 'X') {
+//         for (let j = 0; j < 9; j++) {
+//             if (array[index] == ) {
+    
+//             }
+//         }
+//     }
+//     return highestValueIndex;
+// }
+
+function highestValueIndexFunc(array, squares) {
+    let highestValueIndex = 0;
+    let highestValue = 0;
+
+    for (let i = 0; i < 9; i++) {
+        if (array[i] == highestValue && squares[i] == 'X') {
+            array[i] = -1000;
+            highestValueIndexFunc(array, squares);
+        }
+        // Caso exista valores iguais, sera selecionado a ultima ocorrencia cujo X não esta marcado
+        if (array[i] >= highestValue) {
+            highestValue = array[i];
+            highestValueIndex = i;
+        }
+    }
+
+    return highestValueIndex;
+}
+
+// Level 1 da IA: Realiza a jogada em uma posição aleatória do tabuleiro
 const randomPlay = (squares) => {
     const freeSquares = squares.map((square, index) => {
         if (square === '') {
             return index;
-        } 
+        }
     });
     const whitoutUndefined = freeSquares.filter(value => value !== undefined);
     const indexNextPlay = Math.floor(Math.random() * whitoutUndefined.length);
@@ -14,24 +66,19 @@ const randomPlay = (squares) => {
 const level2 = (squares) => {
     const weightPerField = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     squares.forEach((field, index) => {
-        if(field == ''){
-            if(index == 4){
+        if (field == '') {
+            // Mais dois pontos caso o campo vazio seja o central
+            if (index == 4) {
                 weightPerField[index] += 2;
             }
-    
+            // Mais um ponto caso o campo vazio seja um dos cantos
             if (index == 0 || index == 2 || index == 6 || index == 8) {
                 weightPerField[index] += 1;
             }
 
-            // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
-            if(squares[index - 3] == 'X' || squares[index - 6] == 'X') {
-                weightPerField[index] -= 2;
-            }
-            if(squares[index + 3] == 'X' || squares[index + 6] == 'X') {
-                weightPerField[index] -= 2;
-            }
-            if(index == 0){
-                if(
+            if (index == 0) {
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[1] == 'X' ||
                     squares[2] == 'X' ||
                     squares[3] == 'X' ||
@@ -41,8 +88,25 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[1] == 'X' && squares[2] == 'X' ||
+                    squares[3] == 'X' && squares[6] == 'X' ||
+                    squares[4] == 'X' && squares[8] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[1] == 'O' && squares[2] == 'O' ||
+                    squares[3] == 'O' && squares[6] == 'O' ||
+                    squares[4] == 'O' && squares[8] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 1) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[2] == 'X' ||
                     squares[4] == 'X' ||
@@ -50,8 +114,23 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[2] == 'X' ||
+                    squares[4] == 'X' && squares[7] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[2] == 'O' ||
+                    squares[4] == 'O' && squares[7] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 2) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[1] == 'X' ||
                     squares[4] == 'X' ||
@@ -61,8 +140,25 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[1] == 'X' ||
+                    squares[4] == 'X' && squares[6] == 'X' ||
+                    squares[5] == 'X' && squares[8] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[1] == 'O' ||
+                    squares[4] == 'O' && squares[6] == 'O' ||
+                    squares[5] == 'O' && squares[8] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 3) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[4] == 'X' ||
                     squares[5] == 'X' ||
@@ -70,8 +166,23 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[6] == 'X' ||
+                    squares[4] == 'X' && squares[5] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[6] == 'O' ||
+                    squares[4] == 'O' && squares[5] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 4) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[1] == 'X' ||
                     squares[2] == 'X' ||
@@ -83,8 +194,27 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[8] == 'X' ||
+                    squares[2] == 'X' && squares[6] == 'X' ||
+                    squares[1] == 'X' && squares[7] == 'X' ||
+                    squares[3] == 'X' && squares[5] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[8] == 'O' ||
+                    squares[2] == 'O' && squares[6] == 'O' ||
+                    squares[1] == 'O' && squares[7] == 'O' ||
+                    squares[3] == 'O' && squares[5] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 5) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[2] == 'X' ||
                     squares[3] == 'X' ||
                     squares[4] == 'X' ||
@@ -92,8 +222,23 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[2] == 'X' && squares[8] == 'X' ||
+                    squares[3] == 'X' && squares[4] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[2] == 'O' && squares[8] == 'O' ||
+                    squares[3] == 'O' && squares[4] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 6) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[2] == 'X' ||
                     squares[3] == 'X' ||
@@ -103,8 +248,25 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[3] == 'X' ||
+                    squares[2] == 'X' && squares[4] == 'X' ||
+                    squares[7] == 'X' && squares[8] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[3] == 'O' ||
+                    squares[2] == 'O' && squares[4] == 'O' ||
+                    squares[7] == 'O' && squares[8] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 7) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[1] == 'X' ||
                     squares[4] == 'X' ||
                     squares[6] == 'X' ||
@@ -112,8 +274,23 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[1] == 'X' && squares[4] == 'X' ||
+                    squares[6] == 'X' && squares[8] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[1] == 'O' && squares[4] == 'O' ||
+                    squares[6] == 'O' && squares[8] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             } else if (index == 8) {
-                if(
+                // Menos dois pontos caso haja peça do adversário na mesma linha, coluna ou diagonal
+                if (
                     squares[0] == 'X' ||
                     squares[2] == 'X' ||
                     squares[4] == 'X' ||
@@ -122,27 +299,37 @@ const level2 = (squares) => {
                 ) {
                     weightPerField[index] -= 2;
                 }
+                // Mais quatro pontos se o campo impedir a vitória do adversário
+                if (
+                    squares[0] == 'X' && squares[4] == 'X' ||
+                    squares[2] == 'X' && squares[5] == 'X' ||
+                    squares[6] == 'X' && squares[7] == 'X'
+                ) {
+                    weightPerField[index] += 4;
+                }
+                // Mais quatro pontos caso o campo leve a uma vitória
+                if (
+                    squares[0] == 'O' && squares[4] == 'O' ||
+                    squares[2] == 'O' && squares[5] == 'O' ||
+                    squares[6] == 'O' && squares[7] == 'O'
+                ) {
+                    weightPerField[index] += 4;
+                }
             }
-
-            
         }
     });
 
-    if (squares[0] === '' && (squares[1] !== 'X' || squares[2] !== 'X')){
-        weightPerField[0] -= 2;
-    }
+    const nextPlay = highestValueIndexFunc(weightPerField, squares);
+    // console.log(weightPerField);
 
-    console.log(weightPerField);
-
-    return "Foi!";
+    return nextPlay;
 }
 
 module.exports = {
     play(req, res) {
         // const nextPlay = randomPlay(req.body.currentBoard);
-        const teste = level2(req.body.currentBoard);
+        const nextPlay = level2(req.body.currentBoard);
 
-        return res.send(teste);
-        // return res.json(nextPlay);
+        return res.json(nextPlay);
     }
 }
