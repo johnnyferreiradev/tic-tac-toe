@@ -1,52 +1,13 @@
-// // Retorna o indice de um array cujo valor (numeric) é o maior entre todos.
-// function limpaVetor(array, squares, highestValue) {
-//     for (let i = 0; i < 9; i++) {
-//         if (array[i] == highestValue && squares[i] == 'X') {
-//             array[i] = -1000;
-//         }
-//     }
-//     return array;
-// }
-
-// function highestValueIndexFunc(array, squares) {
-//     console.log(`Array: ${array}`);
-//     let highestValueIndex = 0;
-//     let highestValue = 0;
-
-//     for (let i = 0; i < 9; i++) {
-//         // Caso exista valores iguais, sera selecionado a ultima ocorrencia cujo X não esta marcado
-//         if (array[i] > highestValue) {
-//             highestValue = array[i];
-//             highestValueIndex = i;
-//         }
-//     }
-
-//     if (squares[highestValueIndex] == 'X') {
-//         for (let j = 0; j < 9; j++) {
-//             if (array[index] == ) {
-    
-//             }
-//         }
-//     }
-//     return highestValueIndex;
-// }
 
 function highestValueIndexFunc(array, squares) {
     let highestValueIndex = 0;
-    let highestValue = 0;
-
+    let highestValue = -10000;
     for (let i = 0; i < 9; i++) {
-        if (array[i] == highestValue && squares[i] == 'X') {
-            array[i] = -1000;
-            highestValueIndexFunc(array, squares);
-        }
-        // Caso exista valores iguais, sera selecionado a ultima ocorrencia cujo X não esta marcado
         if (array[i] >= highestValue) {
             highestValue = array[i];
             highestValueIndex = i;
         }
     }
-
     return highestValueIndex;
 }
 
@@ -59,7 +20,6 @@ const randomPlay = (squares) => {
     });
     const whitoutUndefined = freeSquares.filter(value => value !== undefined);
     const indexNextPlay = Math.floor(Math.random() * whitoutUndefined.length);
-
     return whitoutUndefined[indexNextPlay];
 }
 
@@ -316,20 +276,16 @@ const level2 = (squares) => {
                     weightPerField[index] += 4;
                 }
             }
+        } else {
+            weightPerField[index] = -1000;
         }
     });
-
-    const nextPlay = highestValueIndexFunc(weightPerField, squares);
-    // console.log(weightPerField);
-
-    return nextPlay;
+    return highestValueIndexFunc(weightPerField, squares);
 }
 
 module.exports = {
     play(req, res) {
-        // const nextPlay = randomPlay(req.body.currentBoard);
         const nextPlay = level2(req.body.currentBoard);
-
         return res.json(nextPlay);
     }
 }
