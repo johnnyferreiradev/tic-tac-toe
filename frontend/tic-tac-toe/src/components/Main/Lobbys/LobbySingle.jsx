@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import './LobbySingle.css';
 
@@ -11,20 +11,47 @@ import api from '../../../services/api';
 export default class LobbySingle extends React.Component {
     state = {
         player: '',
-        playerId: '',
-        gamemode: 'single'
+        playerId: 0,
+        gamemode: 'single',
+        errorMessage: false,
+        redirect: false
     }
 
     updateField(event) {
         this.setState({ player: event.target.value });
     }
 
-    async createPlayer() {
+    async createPlayer(e) {
+        e.preventDefault();
         const newPlayer = await api.post('/ranking', {
             name: this.state.player,
             score: 0
         });
-        this.setState({ id: newPlayer.data._id });
+
+        this.setState({ playerId: newPlayer.data.id });
+
+        if (this.state.playerId === -1) {
+            this.setState({ errorMessage: true });
+        } else {
+            this.setState({ redirect: true });
+        }
+    }
+
+    renderRedirect() {
+        if (this.state.redirect) {
+            return (
+                <Redirect
+                    to={{
+                        pathname: '/board',
+                        state: {
+                            player: this.state.player,
+                            playerId: this.state.playerId,
+                            gamemode: this.state.gamemode
+                        }
+                    }}
+                />
+            )
+        }
     }
 
     render() {
@@ -36,20 +63,16 @@ export default class LobbySingle extends React.Component {
                     <form>
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>
-                            <input type="text" id="player-name" onChange={ event => this.updateField(event) } />
+                            <input type="text" id="player-name" onChange={event => this.updateField(event)} />
+                            {this.state.errorMessage && <p className="ms-err">Usuário já existe!</p>}
                         </div>
                         <div className="form-group">
-                            <Link 
-                                to={{
-                                    pathname: '/board',
-                                    state: {
-                                        player: this.state.player,
-                                        gamemode: this.state.gamemode
-                                    }
-                                }} 
+                            <button
                                 className="single-btn-play"
-                                onClick={e => this.createPlayer(e)}
-                            > Jogar! </Link>
+                                onClick={e => this.createPlayer(e)}>
+                                Jogar
+                            </button>
+                            {this.renderRedirect()}
                         </div>
                     </form>
                 </main>

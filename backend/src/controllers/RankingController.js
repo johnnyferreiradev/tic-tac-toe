@@ -22,7 +22,7 @@ module.exports = {
             const newPlayer = await Ranking.create(req.body);
             return res.json(newPlayer);
         } catch (e) {
-            return res.status(500).send(`Error: ${e}`);
+            return res.json({ id: -1 });
         }
     },
 
