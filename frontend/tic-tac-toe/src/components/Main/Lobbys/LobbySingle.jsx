@@ -4,17 +4,27 @@ import { Link } from 'react-router-dom';
 import './LobbySingle.css';
 
 import Title from '../../templates/Title/Title';
-
 import Ranking from '../Ranking/Ranking';
+
+import api from '../../../services/api';
 
 export default class LobbySingle extends React.Component {
     state = {
         player: '',
+        playerId: '',
         gamemode: 'single'
     }
 
     updateField(event) {
         this.setState({ player: event.target.value });
+    }
+
+    async createPlayer() {
+        const newPlayer = await api.post('/ranking', {
+            name: this.state.player,
+            score: 0
+        });
+        this.setState({ id: newPlayer.data._id });
     }
 
     render() {
@@ -38,6 +48,7 @@ export default class LobbySingle extends React.Component {
                                     }
                                 }} 
                                 className="single-btn-play"
+                                onClick={e => this.createPlayer(e)}
                             > Jogar! </Link>
                         </div>
                     </form>

@@ -34,9 +34,10 @@ export default class Board extends Component {
         player2: '',
         currentPlayer: '',
         winner: '',
-        score: '',
+        score: 0,
         playerTurn: true,
-        level: 1
+        level: 1,
+        amountOfPlays: 0
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -82,6 +83,11 @@ export default class Board extends Component {
         }
     }
 
+    updateRanking() {
+        // Implementação...
+        console.log('O método updateRanking ainda será implementado');
+    }
+
     checkVictory() {
         const squares = this.state.squares
 
@@ -100,6 +106,10 @@ export default class Board extends Component {
                 winner = this.state.player2;
             } else if (this.state.playValue === 'X') {
                 winner = this.state.player1;
+            }
+
+            if (this.props.location.state.gamemode === 'single'){
+                this.updateRanking();
             }
 
             setTimeout(() => {
@@ -132,7 +142,6 @@ export default class Board extends Component {
         });
 
         let index = response.data;
-
         let squares = [];
         squares = this.state.squares;
 
@@ -140,17 +149,12 @@ export default class Board extends Component {
             this.toggleCurrentPlayer();
 
             squares[index] = this.state.playValue;
-
             this.setState({ squares });
-
             this.setState({ playerTurn: true });
 
             let win = this.checkVictory();
-
             if (win) return true;
-
             this.toggleValue();
-
         }, 300);
     }
 
@@ -159,24 +163,22 @@ export default class Board extends Component {
         if (this.props.location.state.gamemode === 'single' && !this.state.playerTurn) {
             return 
         }
-
+        // Impede que o jogador altere o valor de um campo ja preenchido
         if (this.state.squares[i] !== '') {
             return
         }
 
         let squares = [];
-        squares = this.state.squares
+        squares = this.state.squares;
+        let amountOfPlays = this.state.amountOfPlays;
 
         this.toggleValue();
-
         this.toggleCurrentPlayer();
 
         squares[i] = this.state.playValue;
-
-        this.setState({ squares });
+        this.setState({ squares, amountOfPlays: amountOfPlays + 1 });
 
         let win = this.checkVictory();
-
         if (win) return;
 
         if (this.props.location.state.gamemode === 'single') {
@@ -218,7 +220,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { showBoard, draw, winner } = this.state;
+        const { showBoard, draw, winner, score } = this.state;
         const { gamemode } = this.props.location.state;
 
         return (
@@ -253,7 +255,7 @@ export default class Board extends Component {
                     <div className="show-winner">
                         <h1 className="game-result">{this.state.winner}</h1>
                         <h3 className="win">Venceu!</h3>
-                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontuação: 3000!</h3>}
+                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontuação: {score}!</h3>}
                         <div className="btns-game-result">
                             {/* Este botão irá aparecer caso a maquina vença */}
                             { gamemode === 'single' &&  winner === 'Máquina' &&
