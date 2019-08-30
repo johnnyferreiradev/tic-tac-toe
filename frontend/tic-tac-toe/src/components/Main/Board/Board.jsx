@@ -35,7 +35,8 @@ export default class Board extends Component {
         currentPlayer: '',
         winner: '',
         score: '',
-        playerTurn: true
+        playerTurn: true,
+        level: 1
     }
 
     constructor() { // Estratégia utilizada para resolver o problema da referencia do this
@@ -50,6 +51,11 @@ export default class Board extends Component {
         })
         this.setState({ ...initialState }); // O state recebe todas as propriedades de initialState
         this.setState({ currentPlayer: this.state.player1 });
+    }
+
+    nextLevel() {
+        this.restart();
+        this.setState({ level: this.state.level + 1 });
     }
 
     renderRedirect() {
@@ -121,7 +127,8 @@ export default class Board extends Component {
     // do tabuleiro e uma pontuação atualizada
     async machineTurn() {
         const response = await api.post('/playmachine', {
-            currentBoard: this.state.squares
+            currentBoard: this.state.squares,
+            level: this.state.level
         });
 
         let index = response.data;
@@ -135,6 +142,7 @@ export default class Board extends Component {
             squares[index] = this.state.playValue;
 
             this.setState({ squares });
+
             this.setState({ playerTurn: true });
 
             let win = this.checkVictory();
@@ -210,7 +218,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { showBoard, draw } = this.state;
+        const { showBoard, draw, winner } = this.state;
         const { gamemode } = this.props.location.state;
 
         return (
@@ -247,7 +255,25 @@ export default class Board extends Component {
                         <h3 className="win">Venceu!</h3>
                         {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontuação: 3000!</h3>}
                         <div className="btns-game-result">
-                            <button onClick={() => this.restart()} className="restart">Reiniciar</button>
+                            {/* Este botão irá aparecer caso a maquina vença */}
+                            { gamemode === 'single' &&  winner === 'Máquina' &&
+                                <button onClick={() => this.restart()} className="restart">
+                                    Reiniciar
+                                </button>
+                            }
+                            {/* Este botão irá aparecer caso o jogador vença */}
+                            { gamemode === 'single' &&  winner !== 'Máquina' &&
+                                <button onClick={() => this.nextLevel()} className="restart">
+                                    Continuar
+                                </button>
+                            }
+
+                            {/* Este botão irá aparecer caso o modo seja multiplayer */}
+                            { gamemode === 'multi' &&
+                                <button onClick={() => this.restart()} className="restart">
+                                    Reiniciar
+                                </button>
+                            }
                             {this.renderRedirect()}
                             <button onClick={() => this.leave()} className="leave">Sair</button>
                         </div>

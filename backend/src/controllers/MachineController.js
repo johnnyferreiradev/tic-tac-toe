@@ -12,7 +12,7 @@ function highestValueIndexFunc(array, squares) {
 }
 
 // Level 1 da IA: Realiza a jogada em uma posição aleatória do tabuleiro
-const randomPlay = (squares) => {
+const level1 = (squares) => {
     const freeSquares = squares.map((square, index) => {
         if (square === '') {
             return index;
@@ -285,7 +285,13 @@ const level2 = (squares) => {
 
 module.exports = {
     play(req, res) {
-        const nextPlay = level2(req.body.currentBoard);
+        let nextPlay
+        if (req.body.level == 1) {
+            nextPlay = level1(req.body.currentBoard);
+        } else if (req.body.level >= 2) { // Maior ou igual até que um terceiro nível seja implementado..
+            nextPlay = level2(req.body.currentBoard);
+        }
+
         return res.json(nextPlay);
     }
 }
