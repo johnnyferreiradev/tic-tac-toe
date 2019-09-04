@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import './Login.css';
 // import '../../../assets/General-styles/styles.css';
@@ -9,7 +9,11 @@ import api from '../../../services/api';
 export default class Login extends Component {
     state = {
         nickName: '',
-        password: ''
+        password: '',
+        playerId: 0,
+        gamemode: 'single',
+        errorMessage: false,
+        redirect: false
     }
 
     renderNickName(event) {
@@ -29,9 +33,27 @@ export default class Login extends Component {
         });
 
         if (response.data.id === -1) {
-            console.log('Usuário não cadastrado');
+            this.setState({ errorMessage: true });
         } else {
-            console.log('Usuário logado');
+            this.setState({ playerId: response.data.id });
+            this.setState({ redirect: true });
+        }
+    }
+
+    renderRedirect() {
+        if (this.state.redirect) {
+            return (
+                <Redirect
+                    to={{
+                        pathname: '/board',
+                        state: {
+                            player: this.state.nickName,
+                            playerId: this.state.playerId,
+                            gamemode: this.state.gamemode
+                        }
+                    }}
+                />
+            )
         }
     }
 
@@ -41,6 +63,7 @@ export default class Login extends Component {
                 <div className="general-box">
                     <h1 className="general-title-form">Bem-Vindo de Volta! :)</h1>
                     <form className="form-general">
+                        {this.state.errorMessage && <p className="ms-err">Nome de usuário ou senha inválidos!</p>}
 
                         <label htmlFor="input-nickname">Nome de usuário</label>
                         <input
@@ -63,7 +86,7 @@ export default class Login extends Component {
                             onClick={(event) => this.login(event)}>
                             Entrar
                         </button>
-
+                        {this.renderRedirect()}
 
                         <p>
                             Não possui uma conta?
