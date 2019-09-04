@@ -18,6 +18,10 @@ const RankingSchema = new mongoose.Schema({
     password: {
         type: String,
         required: false
+    },
+    confirmPassword: {
+        type: String,
+        required: false
     }
 });
 
