@@ -28,7 +28,7 @@ header.header .login-drop-down {
     display: none;
     position: absolute;
     right: 0px;
-    top: 65px;
+    top: 50px;
 }
 
 header.header .header-login:hover .login-drop-down {

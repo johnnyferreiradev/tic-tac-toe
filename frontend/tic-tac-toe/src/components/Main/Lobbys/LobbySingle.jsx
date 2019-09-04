@@ -64,7 +64,7 @@ export default class LobbySingle extends React.Component {
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>
                             <input type="text" id="player-name" onChange={event => this.updateField(event)} />
-                            {this.state.errorMessage && <p className="ms-err">Usuário já existe!</p>}
+                            {this.state.errorMessage && <p className="ms-err">Este nome de usuário já está sendo usado!</p>}
                         </div>
                         <div className="form-group">
                             <button
