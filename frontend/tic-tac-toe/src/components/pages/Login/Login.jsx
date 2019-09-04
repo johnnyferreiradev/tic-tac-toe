@@ -8,21 +8,31 @@ import api from '../../../services/api';
 
 export default class Login extends Component {
     state = {
-        email: '',
+        nickName: '',
         password: ''
     }
 
-    renderEmail(event) {
-        this.setState({ email: event.target.value });
+    renderNickName(event) {
+        this.setState({ nickName: event.target.value });
     }
 
     renderPassword(event) {
         this.setState({ password: event.target.value });
     }
 
-    // Metodo que verifica se o usuário existe
-    async login() {
-        const response = await api.get(`/ranking/:${this.state.email}`)
+    // Metodo que verifica se o usuário existe e realiza o login
+    async login(event) {
+        event.preventDefault();
+        const response = await api.post('/login', {
+            name: this.state.nickName,
+            password: this.state.password
+        });
+
+        if (response.data.id === -1) {
+            console.log('Usuário não cadastrado');
+        } else {
+            console.log('Usuário logado');
+        }
     }
 
     render() {
@@ -32,13 +42,13 @@ export default class Login extends Component {
                     <h1 className="general-title-form">Bem-Vindo de Volta! :)</h1>
                     <form className="form-general">
 
-                        <label htmlFor="input-email">Email</label>
+                        <label htmlFor="input-nickname">Nome de usuário</label>
                         <input
-                            type="email"
-                            id="input-email"
+                            type="text"
+                            id="input-nickname"
                             className="general-input-place"
-                            placeholder="Digite seu Email..."
-                            onChange={(event) => this.renderEmail(event)} />
+                            placeholder="Digite seu nick (nome de jogador)"
+                            onChange={(event) => this.renderNickName(event)} />
 
                         <label htmlFor="input-password">Senha</label>
                         <input
@@ -48,7 +58,11 @@ export default class Login extends Component {
                             placeholder="Digite sua senha..."
                             onChange={(event) => this.renderPassword(event)} />
 
-                        <button className="general-button-white-to-pink">Entrar</button>
+                        <button
+                            className="general-button-white-to-pink"
+                            onClick={(event) => this.login(event)}>
+                            Entrar
+                        </button>
 
 
                         <p>

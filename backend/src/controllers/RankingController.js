@@ -9,9 +9,10 @@ module.exports = {
     },
 
     async show(req, res) {
+        console.log(req.params);
         try {
-            const gamer =  await Ranking.find({ email: req.params.email });
-            return res.json({ id: gamer[0]._id, email: gamer[0].email, score: gamer[0].score });
+            const gamer =  await Ranking.find({ name: req.params.name });
+            return res.json({ id: gamer[0]._id, name: gamer[0].name, score: gamer[0].score });
         } catch (e) {
             return res.json({ id: -1 });
         }
