@@ -14,10 +14,17 @@ module.exports = {
 
     async signup(req, res) {
         try {
-            const newPlayer = await Ranking.create(req.body);
-            return res.json({id: newPlayer._id, name: newPlayer.name});
+            const userNameAlreadyExists = await Ranking.findOne({name: req.body.name});
+            const userEmailAlreadyExists = await Ranking.findOne({email: req.body.email});
+
+            if (userNameAlreadyExists || userEmailAlreadyExists) {
+                return res.json({ id: -1 });
+            } else {
+                const newPlayer = await Ranking.create(req.body);
+                return res.json({id: newPlayer._id, name: newPlayer.name});
+            }
         } catch (e) {
-            return res.status(500).send(`Error: ${e}`);
+            return res.json({ id: -1 });
         }
     }
 }

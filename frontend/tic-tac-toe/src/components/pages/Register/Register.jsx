@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+
+import api from '../../../services/api';
 
 export default class Register extends Component {
     state = {
@@ -10,7 +12,8 @@ export default class Register extends Component {
         errorStatus: -1,
         errorMessage: [
             'Preencha todos os campos!',
-            'Senhas não conferem'
+            'Senhas não conferem',
+            'Este nome de usuário ou email já está sendo utilizado!'
         ],
         redirect: false
     }
@@ -43,12 +46,13 @@ export default class Register extends Component {
     validations(event) {
         event.preventDefault();
         const { nickName, email, password, confirmPassword } = this.state;
-        if(nickName === '' || email === '' || password === '' || confirmPassword == '') {
+
+        if (nickName === '' || email === '' || password === '' || confirmPassword === '') {
             this.setState({ errorStatus: 0 });
             return;
         }
 
-        if(this.passwordsCheck() === false) {
+        if (this.passwordsCheck() === false) {
             this.setState({ errorStatus: 1 });
             return;
         }
@@ -68,22 +72,21 @@ export default class Register extends Component {
         });
 
         if (response.data.id === -1) {
-            console.log('erro no cadastro');
-            // this.setState({ errorMessage: true });
+            this.setState({ errorStatus: 2 });
         } else {
-            console.log('cadastrado com sucesso');
-            // this.setState({ playerId: response.data.id });
-            // this.setState({ redirect: true });
+            this.setState({ errorStatus: -1 });
+            alert('Usuário cadastrado com sucesso!');
+            this.setState({ redirect: true });
         }
     }
 
-    // renderRedirect() {
-    //     if (this.state.redirect) {
-    //         return (
-    //             <Redirect to="/singleplayer" />
-    //         )
-    //     }
-    // }
+    renderRedirect() {
+        if (this.state.redirect) {
+            return (
+                <Redirect to="/singleplayer" />
+            )
+        }
+    }
 
     render() {
         return (
@@ -91,28 +94,47 @@ export default class Register extends Component {
                 <div className="general-box">
                     <h1 className="general-title-form">Registrar! =)</h1>
                     <form className="form-general">
+                        {this.state.errorStatus === 0 && <p className="ms-err">{this.state.errorMessage[0]}</p>}
+                        {this.state.errorStatus === 2 && <p className="ms-err">{this.state.errorMessage[2]}</p>}
+
+                        <label htmlFor="input-nickname">Nome de usuário</label>
+                        <input
+                            type="text"
+                            id="input-nickname"
+                            className="general-input-place"
+                            placeholder="Digite seu nick (nome de usuário)..."
+                            onChange={event => this.renderNickName(event)} />
 
                         <label htmlFor="input-email">Email</label>
-                        <input type="email" id="input-email" className="general-input-place" placeholder="Digite seu Email..." />
+                        <input
+                            type="email"
+                            id="input-email"
+                            className="general-input-place"
+                            placeholder="Digite seu Email..."
+                            onChange={event => this.renderEmail(event)} />
 
                         <label htmlFor="input-password">Senha</label>
-                        <input type="password" className="general-input-place" placeholder="Digite sua senha..." />
+                        <input
+                            type="password"
+                            className="general-input-place"
+                            placeholder="Digite sua senha..."
+                            onChange={event => this.renderPassword(event)} />
 
-                        <label htmlFor="input-password">Senha</label>
-                        <input type="password" className="general-input-place" placeholder="Digite sua senha novamente..." />
+                        <label htmlFor="input-password">Confirmar senha</label>
+                        <input
+                            type="password"
+                            className="general-input-place"
+                            placeholder="Digite sua senha novamente..."
+                            onChange={event => this.renderConfirmPassword(event)} />
 
                         {this.state.errorStatus === 1 && <p className="ms-err">{this.state.errorMessage[1]}</p>}
 
-                        <input type="checkbox">
-
-                        </input>
-                        Deseja aceitar os termos?
-        
-                        <Link to="/register" className="button-mode">
-                            <button className="general-button-white-to-pink">
-                                Registrar
-                            </button>
-                        </Link>
+                        <button
+                            className="general-button-white-to-pink"
+                            onClick={(event) => this.validations(event)}>
+                            Registrar
+                        </button>
+                        {this.state.redirect && this.renderRedirect()}
                     </form>
                 </div>
             </section>
