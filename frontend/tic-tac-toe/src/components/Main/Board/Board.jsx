@@ -35,6 +35,7 @@ export default class Board extends Component {
         currentPlayer: '',
         winner: '',
         score: 0,
+        rankingScore: 0,
         playerTurn: true,
         level: 1,
         amountOfPlays: 0
@@ -83,16 +84,19 @@ export default class Board extends Component {
         }
     }
 
-    async updateScore() { // Função incompleta, por arrumar... 
+    async updateScore() {
         const calculatedScore = await api.post('/score', {
             level: this.state.level,
             amountOfPlays: this.state.amountOfPlays
         });
-
+        console.log('pontuação calculada = ', calculatedScore.data);
+        this.setState({ score: calculatedScore.data.score });
         // Atualiza o score no banco de dados
         const response = await api.put(`/ranking/${this.props.location.state.playerId}`, {
             score: this.state.score
         });
+        console.log('resposta do update = ', response.data);
+        this.setState({ rankingScore: response.data.score, score: response.data.scoreOfThisMove });
     }
 
     checkVictory() {
@@ -227,7 +231,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { showBoard, draw, winner, score } = this.state;
+        const { showBoard, draw, winner, score, rankingScore } = this.state;
         const { gamemode } = this.props.location.state;
 
         return (
@@ -262,7 +266,7 @@ export default class Board extends Component {
                     <div className="show-winner">
                         <h1 className="game-result">{this.state.winner}</h1>
                         <h3 className="win">Venceu!</h3>
-                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontuação: {score}!</h3>}
+                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontos: {score} pontuação no ranking: {rankingScore}!</h3>}
                         <div className="btns-game-result">
                             {/* Este botão irá aparecer caso a maquina vença */}
                             {gamemode === 'single' && winner === 'Máquina' &&

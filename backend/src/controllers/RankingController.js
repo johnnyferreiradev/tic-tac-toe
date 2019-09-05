@@ -27,17 +27,19 @@ module.exports = {
         }
     },
 
-    async update(req, res) { // Função incompleta, por arrumar... 
+    async update(req, res) { // Obs: Melhorar nomes de variáveis... 
         try {
             const response = await Ranking.findOne({ _id: req.params.id });
             const currentScore = response.score;
-
+            const scoreOfThisMove = req.body.score;
+            
+            let gamer
             if (req.body.score > currentScore){
-                req.body.score = currentScore;
+                gamer = await Ranking.findByIdAndUpdate(req.params.id, req.body, { new: true });
+                return res.json({ id: gamer._id, score: gamer.score, scoreOfThisMove });
+            } else {
+                return res.json({ id: req.params.id, score: currentScore, scoreOfThisMove: req.body.score });
             }
-
-            const gamer = await Ranking.findByIdAndUpdate(req.params.id, req.body, { new: true });
-            return res.json({ id: gamer._id, name: gamer.name, score: gamer.score, scoreOfThisMove: req.body.score });
         } catch (e) {
             return res.status(500).send(`Error: ${e}`);
         }
