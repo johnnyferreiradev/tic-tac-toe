@@ -2,48 +2,11 @@ const mongoose = require('mongoose');
 const Ranking = mongoose.model('Ranking');
 
 module.exports = {
-    async index(req, res) {
-        const gamers = await Ranking.find({});
-
-        return res.json(gamers);
+    async calculateScore(req, res) { // Função incompleta, por arrumar... 
+        return 
     },
 
-    async show(req, res) {
-        console.log(req.params);
-        try {
-            const gamer =  await Ranking.find({ name: req.params.name });
-            return res.json({ id: gamer[0]._id, name: gamer[0].name, score: gamer[0].score });
-        } catch (e) {
-            return res.json({ id: -1 });
-        }
-    },
-
-    async store(req, res) {
-        try {
-            const newPlayer = await Ranking.create(req.body);
-            return res.json(newPlayer);
-        } catch (e) {
-            return res.json({ id: -1 });
-        }
-    },
-
-    async update(req, res) { // Função incompleta, por arrumar... 
-        try {
-            const response = await Ranking.findOne({ _id: req.params.id });
-            const currentScore = response.score;
-
-            if (req.body.score > currentScore){
-                req.body.score = currentScore;
-            }
-
-            const gamer = await Ranking.findByIdAndUpdate(req.params.id, req.body, { new: true });
-            return res.json({ id: gamer._id, name: gamer.name, score: gamer.score, scoreOfThisMove: req.body.score });
-        } catch (e) {
-            return res.status(500).send(`Error: ${e}`);
-        }
-    },
-
-    async calculateScore (req, res) {
+    async calculateScore1 (req, res) {
         try {
             const   win = req.body.win,
                     plays = req.body.plays,
