@@ -3,9 +3,16 @@ const Ranking = mongoose.model('Ranking');
 
 module.exports = {
     async index(req, res) {
-        const gamers = await Ranking.find({});
+        const { page = 1, all } = req.query;
 
-        return res.json(gamers);
+        let response;
+        if (all === '1') {
+            response = await Ranking.find({}).select('name score');
+        } else {
+            response = await Ranking.paginate({}, {select: 'name score', page, limit: 4});
+        }
+
+        return res.json(response);
     },
 
     async show(req, res) {
@@ -23,7 +30,7 @@ module.exports = {
             const newPlayer = await Ranking.create(req.body);
             return res.json(newPlayer);
         } catch (e) {
-            return res.json({ id: -1 });
+            return res.json({ _id: -1 });
         }
     },
 
@@ -41,7 +48,8 @@ module.exports = {
                 return res.json({ id: req.params.id, score: currentScore, scoreOfThisMove: req.body.score });
             }
         } catch (e) {
-            return res.status(500).send(`Error: ${e}`);
+            console.log('erro no update');
+            return res.status(500).send(`Erro no update: ${e}`);
         }
     },
 

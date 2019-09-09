@@ -52,12 +52,14 @@ export default class Board extends Component {
             squares[index] = '';
         })
         this.setState({ ...initialState }); // O state recebe todas as propriedades de initialState
-        this.setState({ currentPlayer: this.state.player1 });
+        this.setState({ currentPlayer: this.state.player1, amountOfPlays: 0 });
     }
 
     nextLevel() {
         this.restart();
-        this.setState({ level: this.state.level + 1 });
+        if (this.state.level < 2) {
+            this.setState({ level: this.state.level + 1 });
+        }
     }
 
     renderRedirect() {
@@ -85,17 +87,16 @@ export default class Board extends Component {
     }
 
     async updateScore() {
+        console.log(this.state.level, this.state.amountOfPlays);
         const calculatedScore = await api.post('/score', {
             level: this.state.level,
             amountOfPlays: this.state.amountOfPlays
         });
-        console.log('pontuação calculada = ', calculatedScore.data);
-        this.setState({ score: calculatedScore.data.score });
-        // Atualiza o score no banco de dados
+        this.setState({ score: calculatedScore.data.intScore });
+        
         const response = await api.put(`/ranking/${this.props.location.state.playerId}`, {
             score: this.state.score
         });
-        console.log('resposta do update = ', response.data);
         this.setState({ rankingScore: response.data.score, score: response.data.scoreOfThisMove });
     }
 

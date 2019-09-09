@@ -28,7 +28,10 @@ export default class LobbySingle extends React.Component {
             score: 0
         });
 
-        this.setState({ playerId: newPlayer.data.id });
+        console.log('Lobby');
+        console.log(newPlayer.data);
+
+        this.setState({ playerId: newPlayer.data._id });
 
         if (this.state.playerId === -1) {
             this.setState({ errorMessage: true });
@@ -59,7 +62,7 @@ export default class LobbySingle extends React.Component {
             <>
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
-                    <Ranking />
+                    <Ranking allElements={0}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
                     <form>
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>

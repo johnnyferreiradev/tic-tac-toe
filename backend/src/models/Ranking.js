@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require('mongoose-paginate');
 
 const RankingSchema = new mongoose.Schema({
     name: {
@@ -24,5 +24,7 @@ const RankingSchema = new mongoose.Schema({
         required: false
     }
 });
+
+RankingSchema.plugin(mongoosePaginate);
 
 mongoose.model('Ranking', RankingSchema);
