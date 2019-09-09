@@ -8,6 +8,7 @@ import Board from './Board/Board';
 import Header from '../templates/Header/Header';
 import LobbySingle from '../Main/Lobbys/LobbySingle';
 import LobbyMulti from '../Main/Lobbys/LobbyMulti';
+import FullRanking from '../pages/Ranking/FullRanking';
 
 
 const Routes = () => (
@@ -20,6 +21,7 @@ const Routes = () => (
             <Route path="/singleplayer" component={LobbySingle} />
             <Route path="/multiplayer" component={LobbyMulti} />
             <Route path="/register" component={Register} />
+            <Route path="/fullranking" component={FullRanking} />
         </Switch>
     </BrowserRouter>
 )

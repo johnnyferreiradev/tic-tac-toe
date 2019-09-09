@@ -7,9 +7,11 @@ module.exports = {
 
         let response;
         if (all === '1') {
-            response = await Ranking.find({}).select('name score');
+            response = await Ranking.find({}).select('name score').sort({ score: -1 });
         } else {
-            response = await Ranking.paginate({}, {select: 'name score', page, limit: 4});
+            response = await Ranking.paginate({}, {select: 'name score', page, limit: 4, sort:{
+                score: -1 //Sort by Date Added DESC
+            }});
         }
 
         return res.json(response);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import './LobbySingle.css';
 
@@ -62,7 +62,10 @@ export default class LobbySingle extends React.Component {
             <>
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
-                    <Ranking allElements={0}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
+                    <div>
+                        <Ranking allElements={0}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
+                        <Link to="/fullranking">Ver ranking completo</Link>
+                    </div>
                     <form>
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>

@@ -39,7 +39,7 @@ export default class Ranking extends React.Component {
 
                 {gamers.map((gamer, index) => (
                     <div className="ranking-item" key={index}>
-                        <p className="position">{index}º</p>
+                        <p className="position">{index+1}º</p>
                         <p className="player-name">{gamer.name}</p>
                         <p className="player-score">{gamer.score}</p>
                     </div>
