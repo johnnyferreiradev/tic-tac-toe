@@ -63,7 +63,7 @@ export default class LobbySingle extends React.Component {
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
                     <div>
-                        <Ranking limit={4}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
+                        <Ranking limit={4} buttons={false}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
                         <Link to="/fullranking">Ver ranking completo</Link>
                     </div>
                     <form>

@@ -7,7 +7,7 @@ const FullRanking = (props) => {
     return (
         <>  
             <Title title="Ranking" />
-            <Ranking limit={10}/>
+            <Ranking limit={10} buttons={true}/>
         </>
     )
 }
