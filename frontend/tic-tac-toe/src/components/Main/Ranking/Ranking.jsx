@@ -10,7 +10,8 @@ export default class Ranking extends React.Component {
         gamers: [],
         limit: 4,
         page: 1,
-        buttons: false
+        buttons: false,
+        colorPosition: '#a971e9'
     }
 
     async getRanking(page = 1, limit = 4) {
@@ -56,6 +57,7 @@ export default class Ranking extends React.Component {
                         <p className="player-score">{gamer.score}</p>
                     </div>
                 ))}
+
                 {buttons &&
                     <div>
                         <button onClick={event => this.prevPage(event)}>Voltar</button>
