@@ -3,16 +3,11 @@ const Ranking = mongoose.model('Ranking');
 
 module.exports = {
     async index(req, res) {
-        const { page = 1, all } = req.query;
+        const { page = 1, limit } = req.query;
 
-        let response;
-        if (all === '1') {
-            response = await Ranking.find({}).select('name score').sort({ score: -1 });
-        } else {
-            response = await Ranking.paginate({}, {select: 'name score', page, limit: 4, sort:{
-                score: -1 //Sort by Date Added DESC
-            }});
-        }
+        const response = await Ranking.paginate({}, {select: 'name score', page, limit: parseInt(limit), sort:{
+            score: -1 // Ordem decrescente
+        }});
 
         return res.json(response);
     },

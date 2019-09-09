@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Ranking from '../../Main/Ranking/Ranking';
+import Title from '../../templates/Title/Title';
 
 const FullRanking = (props) => {
     return (
-        <>
-            <Ranking allElements={1}/>
+        <>  
+            <Title title="Ranking" />
+            <Ranking limit={10}/>
         </>
     )
 }
