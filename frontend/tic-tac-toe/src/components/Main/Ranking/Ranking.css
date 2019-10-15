@@ -3,6 +3,7 @@
     background: #fff;
     border-radius: 8px;
     box-shadow: 4px 6px 10px #5555;
+    margin-bottom: 40px;
 }
 
 .ranking .ranking-item {
@@ -43,4 +44,29 @@
 
 .ranking .ranking-item .player-score {
     color: rgb(169, 113, 233);
+}
+
+
+.ranking .btns-ranking {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ranking .btns-ranking button {
+    border: none;
+    font-size: 16px;
+    margin: 15px 20px;
+    padding: 8px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    box-shadow: 2px 3px 3px #5555;
+}
+
+
+.ranking .btns-ranking button:hover {
+    background-color: rgb(169, 113, 233);
+    color: #fff;
+    transition: all .2s;
 }

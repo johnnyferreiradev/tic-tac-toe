@@ -62,10 +62,6 @@ export default class LobbySingle extends React.Component {
             <>
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
-                    <div>
-                        <Ranking limit={4} buttons={false}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
-                        <Link to="/fullranking">Ver ranking completo</Link>
-                    </div>
                     <form>
                         <div className="form-group">
                             <label htmlFor="player-name">Nome</label>
@@ -81,6 +77,10 @@ export default class LobbySingle extends React.Component {
                             {this.renderRedirect()}
                         </div>
                     </form>
+                    <div className="container-rkg">
+                        <Ranking limit={4} buttons={false}/> {/* Se allElements for 1, então todos os gamers devem ser retornados */}
+                        <Link to="/fullranking" className="btn-ranking">Ver ranking completo</Link>
+                    </div>
                 </main>
             </>
         );

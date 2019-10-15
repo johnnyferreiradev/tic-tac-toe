@@ -59,7 +59,7 @@ export default class Ranking extends React.Component {
                 ))}
 
                 {buttons &&
-                    <div>
+                    <div className="btns-ranking">
                         <button onClick={event => this.prevPage(event)}>Voltar</button>
                         <button onClick={event => this.nextPage(event)}>Avançar</button>
                     </div>

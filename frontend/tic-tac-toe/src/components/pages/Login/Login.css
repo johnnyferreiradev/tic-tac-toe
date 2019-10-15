@@ -2,3 +2,12 @@
     border: 2px solid rgb(169, 113, 233);
 }
 
+.ms-err {
+    color: tomato;
+    padding: 20px 0px;
+}
+
+.register {
+    margin: 0px 10px;
+}
+

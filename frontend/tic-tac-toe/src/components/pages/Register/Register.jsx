@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 import api from '../../../services/api';
 
+import './Register.css';
+
 export default class Register extends Component {
     state = {
         nickName: '',

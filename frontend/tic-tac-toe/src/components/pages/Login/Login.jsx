@@ -17,11 +17,11 @@ export default class Login extends Component {
     }
 
     renderNickName(event) {
-        this.setState({ nickName: event.target.value });
+        this.setState({ errorMessage: false, nickName: event.target.value });
     }
 
     renderPassword(event) {
-        this.setState({ password: event.target.value });
+        this.setState({ errorMessage: false, password: event.target.value });
     }
 
     // Metodo que verifica se o usuário existe e realiza o login
@@ -91,7 +91,7 @@ export default class Login extends Component {
                         <p>
                             Não possui uma conta?
                             <Link to="/register" className="button-mode">
-                                <button className="general-button-white-to-pink">Registrar</button>
+                                <button className="general-button-white-to-pink register">Registrar</button>
                             </Link>
                         </p>
                     </form>

@@ -10,6 +10,20 @@
     flex-wrap: wrap;
 }
 
+@media screen and (max-width: 620px) {
+    .lobby-single  {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lobby-single  form {
+        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+}
+
 .lobby-single form {
     display: flex;
     flex-direction: column;
@@ -67,4 +81,23 @@
 
 .lobby-single form .form-group .single-btn-play:active {
     box-shadow: none;
+}
+
+.lobby-single .btn-ranking {
+    text-decoration: none;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 4px 6px 10px #5555;
+    border-radius: 10px;
+    width: 100%;
+    color: rgb(133, 67, 209);
+    margin-bottom: 40px;
+}
+
+.lobby-single .btn-ranking:hover {
+    background: #f1f1f1;
+}
+
+.container-rkg {
+    margin-bottom: 40px;
 }

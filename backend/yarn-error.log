@@ -1,0 +1,48 @@
+Arguments: 
+  /usr/bin/node /home/johnny/.yarn/bin/yarn.js install
+
+PATH: 
+  /home/johnny/.yarn/bin:/home/johnny/.config/yarn/global/node_modules/.bin:/usr/lib/jvm/java-oracle//bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/johnny/.config/composer/vendor/bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.15.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, rmdir '/home/johnny/Github/tic-tac-toe/backend/node_modules/.staging/abbrev-81b50dfe'
+
+npm manifest: 
+  {
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "bcrypt": "^3.0.6",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "mongoose": "^5.6.2",
+      "mongoose-paginate": "^5.0.3",
+      "passport": "^0.4.0",
+      "passport-local": "^1.0.0",
+      "passport-twitter": "^1.0.4",
+      "require-dir": "^1.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

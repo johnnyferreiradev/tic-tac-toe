@@ -9,6 +9,8 @@
 
 .lobby-form {
     box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
 
     display: flex;
     flex-wrap: wrap;
@@ -17,13 +19,16 @@
 }
 
 .lobby-form-group {
-    margin: 0px 40px;
-
+    margin: 0px 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .lobby-vs {
+    margin: 20px 0px;
+    width: 100%;
+    text-align: center;
     font-size: 64px;
     color: rgb(169, 113, 233);
 }
@@ -41,6 +46,7 @@
     border: 3px solid #888;
     border-radius: 10px;
     color: #333;
+    box-sizing: border-box;
 }
 
 .lobby-form-group input:hover {
@@ -53,6 +59,7 @@
 
 .lobby .btn-start {
     margin-top: 40px;
+    margin-bottom: 40px;
     font-size: 80px;
     text-decoration: none;
     color: white;
@@ -72,3 +79,27 @@
 .lobby .btn-start:active {
     box-shadow: none;
 }
+/* 
+@media screen and (max-width: 900px) {
+    .lobby-vs {
+        width: 100%;
+        text-align: left;
+        margin: 20px 40px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .lobby-vs {
+        width: 100%;
+        text-align: left;
+        margin: 20px 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .lobby-vs {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0px;
+    }
+} */
