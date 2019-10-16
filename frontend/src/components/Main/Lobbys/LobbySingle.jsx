@@ -5,6 +5,7 @@ import './LobbySingle.css';
 
 import Title from '../../templates/Title/Title';
 import Ranking from '../Ranking/Ranking';
+import BackButton from '../../templates/BackButton/BackButton';
 
 import api from '../../../services/api';
 
@@ -60,6 +61,7 @@ export default class LobbySingle extends React.Component {
     render() {
         return (
             <>
+                <BackButton page="/" />
                 <Title title="Modo Singleplayer" />
                 <main className="lobby-single">
                     <form>

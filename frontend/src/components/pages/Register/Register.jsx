@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 import api from '../../../services/api';
 
+import BackButton from '../../templates/BackButton/BackButton';
+
 import './Register.css';
 
 export default class Register extends Component {
@@ -92,6 +94,8 @@ export default class Register extends Component {
 
     render() {
         return (
+            <>
+            <BackButton page="/" />
             <section className="general-section">
                 <div className="general-box">
                     <h1 className="general-title-form">Registrar! =)</h1>
@@ -140,6 +144,7 @@ export default class Register extends Component {
                     </form>
                 </div>
             </section>
+            </>
         )
     }
 };

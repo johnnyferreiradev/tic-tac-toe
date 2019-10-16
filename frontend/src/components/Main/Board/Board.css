@@ -11,7 +11,7 @@
 div.board {
     background-color: #fff;
     width: 100%;
-    max-width: 700px;
+    max-width: 500px;
     height: 380px;
     box-shadow: 2px 5px 5px #0002;
     border-radius: 10px;
@@ -163,4 +163,8 @@ div.board {
     color: white;
     cursor: pointer;
     transition: all .2s;
+}
+
+.game-result {
+    text-align: center;
 }

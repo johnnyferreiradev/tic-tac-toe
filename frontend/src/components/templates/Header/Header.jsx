@@ -1,4 +1,4 @@
-import React, { Link } from 'react';
+import React from 'react';
 import logo from '../../../assets/imgs/header-logo.jpeg';
 import Login from '../../pages/Login/Login';
 

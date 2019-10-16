@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Title from '../../templates/Title/Title';
+import BackButton from '../../templates/BackButton/BackButton';
 
 import './LobbyMulti.css';
 
@@ -23,6 +24,7 @@ export default class Lobby extends React.Component {
     render() {
         return (
             <>
+                <BackButton page="/" />
                 <Title title="Modo Multiplayer" />
                 <div className="lobby">
                     <div className="lobby-form">

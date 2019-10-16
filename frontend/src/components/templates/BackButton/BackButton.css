@@ -1,0 +1,18 @@
+.back-btn-container {
+    width: 100%;
+    padding: 20px;
+    padding-left: 20px;
+}
+
+.back-btn-container button {
+    background: red;
+    cursor: pointer;
+    padding: 5px 20px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 2px 4px 5px #5555;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 8px;
+    color: #333;
+}
