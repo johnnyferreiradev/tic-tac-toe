@@ -10,13 +10,14 @@
 
 div.board {
     background-color: #fff;
+    width: 100%;
     max-width: 700px;
-    width: 480px;
     height: 380px;
     box-shadow: 2px 5px 5px #0002;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
+    margin: 10px 0px;
 
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -70,6 +71,7 @@ div.board {
 
 .next-player {
     padding-top: 10px;
+    margin-top: 20px;
 
     display: flex;
     flex-direction: column;
@@ -133,14 +135,14 @@ div.board {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 20px 0px;
 }
 
 .show-winner .btns-game-result button {
     font-size: 40px;
     padding: 10px 20px;
     width: 200px;
-    margin: 10px 20px;
+    margin: 20px;
     border: none;
     border-radius: 10px;
     box-shadow: 4px 5px 8px #0005;
