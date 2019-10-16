@@ -26,15 +26,13 @@
     color: #888;
 }
 
-.ranking .ranking-item:nth-child(2) .position {
+.ranking .ranking-item .primeiro {
     color: gold;
 }
-
-.ranking .ranking-item:nth-child(3) .position {
+.ranking .ranking-item .segundo {
     color: silver;
 }
-
-.ranking .ranking-item:nth-child(4) .position {
+.ranking .ranking-item .terceiro {
     color: #cd7f32;
 }
 

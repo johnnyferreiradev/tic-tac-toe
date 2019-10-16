@@ -41,6 +41,20 @@ export default class Ranking extends React.Component {
         }
     }
 
+    cor = (index, page) => {
+        if((index+1+((page-1)*10))===1){
+            return "primeiro";
+        }        
+        if((index+1+((page-1)*10))===2){
+            return "segundo";
+        }        
+        if((index+1+((page-1)*10))===3){
+            return "terceiro";
+        }
+        return "position";
+    }
+
+
     render() {
         const { gamers, buttons, page } = this.state;
 
@@ -52,7 +66,7 @@ export default class Ranking extends React.Component {
 
                 {gamers.map((gamer, index) => (
                     <div className="ranking-item" key={index}>
-                        <p className="position">{index+1+((page-1)*10)}º</p>
+                        <p className={this.cor(index, page)}>{index+1+((page-1)*10)}º</p>
                         <p className="player-name">{gamer.name}</p>
                         <p className="player-score">{gamer.score}</p>
                     </div>
