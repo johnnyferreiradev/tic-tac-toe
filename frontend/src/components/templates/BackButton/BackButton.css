@@ -5,7 +5,6 @@
 }
 
 .back-btn-container button {
-    background: red;
     cursor: pointer;
     padding: 5px 20px;
     border: none;
@@ -15,4 +14,8 @@
     font-size: 22px;
     border-radius: 8px;
     color: #333;
+}
+
+.back-btn-container button:hover {
+    background-color: #f0f0f0;
 }
