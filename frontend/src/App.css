@@ -17,6 +17,7 @@
 
 html, body {
     height: 100%;
+    background: #fafafa;
 }
 
 #root {
@@ -30,7 +31,6 @@ html, body {
 .App {
     height: 100%;
     width: 100%;
-    background: #fafafa;
 
     display: grid;
     grid-template-columns: 100%;

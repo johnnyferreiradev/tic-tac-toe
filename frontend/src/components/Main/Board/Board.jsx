@@ -267,7 +267,12 @@ export default class Board extends Component {
                     <div className="show-winner">
                         <h1 className="game-result">{this.state.winner}</h1>
                         <h3 className="win">Venceu!</h3>
-                        {gamemode === 'single' && this.state.winner !== 'Máquina' && <h3 className="win">pontos: {score} pontuação no ranking: {rankingScore}!</h3>}
+                        {gamemode === 'single' && this.state.winner !== 'Máquina' && 
+                            <h3 className="win">
+                                <strong>{score} pontos!</strong>
+                                <p>pontuação no ranking: {rankingScore}</p>
+                            </h3>
+                        }
                         <div className="btns-game-result">
                             {/* Este botão irá aparecer caso a maquina vença */}
                             {gamemode === 'single' && winner === 'Máquina' &&

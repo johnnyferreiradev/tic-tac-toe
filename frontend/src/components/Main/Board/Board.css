@@ -49,7 +49,6 @@ div.board {
     border-radius: 10px;
     box-shadow: 4px 5px 8px #0005;
     margin: 0px 10px;
-    width: 100px;
     background-color: #fff;
     color: #333;
     transition: all .2s;
@@ -109,7 +108,24 @@ div.board {
     margin-top: 20px;
     margin-bottom: 50px;
     font-size: 40px;
+    color: #888;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-winner .win strong {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 15px;
     color: rgb(169, 113, 233);
+}
+
+.show-winner .win p {
+    font-size: 28px;
+    color: #aaa;
 }
 
 .show-winner .btns-game-result {
@@ -123,7 +139,7 @@ div.board {
 .show-winner .btns-game-result button {
     font-size: 40px;
     padding: 10px 20px;
-    width: 180px;
+    width: 200px;
     margin: 10px 20px;
     border: none;
     border-radius: 10px;

@@ -6,7 +6,7 @@
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 
@@ -89,7 +89,7 @@
     background: #fff;
     box-shadow: 4px 6px 10px #5555;
     border-radius: 10px;
-    width: 100%;
+    width: 300px;
     color: rgb(133, 67, 209);
     margin-bottom: 40px;
 }
