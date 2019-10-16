@@ -22,11 +22,13 @@ header.header .header-login {
     font-size: 24px;
     color: #fafafa;
     cursor: pointer;
+    padding-right: 10px;
 }
 
 header.header .login-drop-down {
     display: none;
     position: absolute;
+    max-width: 700px;
     right: 0px;
     top: 50px;
 }
